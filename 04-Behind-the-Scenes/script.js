@@ -39,48 +39,87 @@
 
 
 
-// Hoisting with variables
-console.log(me);
-// console.log(job);
-// console.log(year);
+// // Hoisting with variables
+// console.log(me);
+// // console.log(job);
+// // console.log(year);
 
-var me = 'Mike';
-let job = 'student';
-const year = 1975;
+// var me = 'Mike';
+// let job = 'student';
+// const year = 1975;
 
-//Hoisting with functions
-console.log(addDeclaration(2, 3));
-// console.log(addExpression(2, 3));
-console.log(addArrow);
-// console.log(addArrow(2,3));
+// //Hoisting with functions
+// console.log(addDeclaration(2, 3));
+// // console.log(addExpression(2, 3));
+// console.log(addArrow);
+// // console.log(addArrow(2,3));
 
 
-function addDeclaration(a, b) {
-  return a + b;
+// function addDeclaration(a, b) {
+//   return a + b;
+// }
+
+// const addExpression = function (a, b) {
+//   return a + b;
+// }
+
+// var addArrow = (a, b) => a + b;
+
+
+// //Example. why we have to avoid using var 
+// console.log(numProducts);
+// if (!numProducts) deleteShoppingCard();
+
+// var numProducts = 10;
+
+// function deleteShoppingCard() {
+//   console.log('All products deleted');
+// }
+
+
+// var x = 1;
+// let y = 2;
+// const z = 3;
+
+// console.log(x === window.x);
+// console.log(y === window.y);
+// console.log(z === window.z);
+
+// console.log(this);
+
+const calcAge = function (birthYear) {
+  console.log(2023 - birthYear);
+  // console.log(this);
 }
 
-const addExpression = function (a, b) {
-  return a + b;
+calcAge(1975);
+
+const calcAgeArrow = (birthYear) => {
+  console.log(2023 - birthYear);
+  // console.log(this);
 }
 
-var addArrow = (a, b) => a + b;
+calcAgeArrow(2000);
 
-
-//Example. why we have to avoid using var 
-console.log(numProducts);
-if (!numProducts) deleteShoppingCard();
-
-var numProducts = 10;
-
-function deleteShoppingCard() {
-  console.log('All products deleted');
+const mike = {
+  year: 1975,
+  calcAge: function () {
+    console.log(this);
+    console.log(2023 - this.year);
+  }
 }
 
+mike.calcAge();
 
-var x = 1;
-let y = 2;
-const z = 3;
+const sandra = {
+  year: 2000,
+  gender: 'female'
+}
 
-console.log(x === window.x);
-console.log(y === window.y);
-console.log(z === window.z);
+sandra.calcAge = mike.calcAge;
+
+sandra.calcAge();
+
+const f = mike.calcAge;
+
+f();
