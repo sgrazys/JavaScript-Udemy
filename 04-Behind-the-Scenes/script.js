@@ -87,39 +87,99 @@
 
 // console.log(this);
 
-const calcAge = function (birthYear) {
-  console.log(2023 - birthYear);
-  // console.log(this);
-}
+// const calcAge = function (birthYear) {
+//   console.log(2023 - birthYear);
+//   // console.log(this);
+// }
 
-calcAge(1975);
+// calcAge(1975);
 
-const calcAgeArrow = (birthYear) => {
-  console.log(2023 - birthYear);
-  // console.log(this);
-}
+// const calcAgeArrow = (birthYear) => {
+//   console.log(2023 - birthYear);
+//   // console.log(this);
+// }
 
-calcAgeArrow(2000);
+// calcAgeArrow(2000);
+
+// const mike = {
+//   year: 1975,
+//   calcAge: function () {
+//     // console.log(this);
+//     console.log(2023 - this.year);
+//   }
+// }
+
+// mike.calcAge();
+
+// const sandra = {
+//   year: 2000,
+//   gender: 'female'
+// }
+
+// sandra.calcAge = mike.calcAge;
+
+// sandra.calcAge();
+
+// const f = mike.calcAge;
+
+// f();
+
+var firstName = 'James';
 
 const mike = {
-  year: 1975,
+  firstName: 'Mike',
+  year: 1995,
   calcAge: function () {
-    console.log(this);
+    // console.log(this);
     console.log(2023 - this.year);
-  }
-}
 
+
+    //SOLUTION 1 | THIS IS OLD pre ES6 solution
+
+    // const self = this; // self or that
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    //   // console.log(this.year >= 1981 && this.year <= 1996);
+    // }
+    // isMillenial();
+
+
+    //  SOLUTION 2 
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    }
+    isMillenial();
+
+  },
+
+  greet: () => {
+    console.log(this);
+    console.log(`Hello ${this.firstName}`);
+  }
+};
+
+mike.greet();
 mike.calcAge();
 
-const sandra = {
-  year: 2000,
-  gender: 'female'
+
+const addExpression = function (a, b) {
+  // console.log(arguments.length);
+  let result = 0;
+
+  for (let i = 0; i < arguments.length; i++) {
+    result += arguments[i]
+  }
+  console.log(result);
 }
 
-sandra.calcAge = mike.calcAge;
+addExpression(1, 2, 7, 40, 160)
 
-sandra.calcAge();
 
-const f = mike.calcAge;
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b
+}
 
-f();
+addArrow(2, 3, 5)
