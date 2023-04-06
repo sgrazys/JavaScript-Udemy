@@ -34,43 +34,91 @@ const restaurant = {
       close: 24,
     },
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your  deliscios pasta with ${ing1}, ${ing2} and ${ing3}  `);
+  }
 };
 
-console.log(restaurant.order(3, 1));
+const arr = [7, 8, 9]
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
 
-restaurant.orderDelivery({
-  categoryIndex: 3,
-  starterIndex: 1,
-  mainIndex: 1,
-  hours: '17:30',
-  adress: 'Kalvariju 12'
-});
+//SPREAD Array
+const newArr = [1, 2, ...arr];
+console.log(newArr);
 
-restaurant.orderDelivery({})
+//SPREAD as arguments in functions
+console.log(...newArr);
 
-/////////////////////////////////
-//Destructuring Objects
-const { name, categories, openingHours } = restaurant;
-console.log(name, categories, openingHours);
+//Spread to extend array
+const newMenu = [...restaurant.mainMenu, 'Lasagnia'];
+console.log(newMenu);
 
-const { name: restaurantName, openingHours: hours, categories: tags } = restaurant
-console.log(restaurantName, hours, tags);
+//COPY array | Shallow copy
+const mainMenuCopy = [...restaurant.mainMenu];
 
-//Default values
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+//Join 2 or more arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
 
-//Mutating variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
+// Iterables: arrays, strings, maps, sets... NOT objects!
 
-({ a, b } = obj);
-console.log(a, b);
+//SPREAD on string
+const str = 'Marlon';
+const letters = [...str, ' ', 'B.'];
+console.log(letters);
+console.log(...str)
 
-//nested objects
-const { fri: { open: o, close: c } } = openingHours;
-console.log(o, c);
+// get ingridients to orderPasta method from prompt window
+// const ingridients = [prompt('Let\'s make pasta! Ingridient 1: '), prompt('Ingridient 2: '), prompt('Ingridient 3: ')];
+// restaurant.orderPasta(...ingridients);
+
+// Objects
+const newRestaurant = { since: '1964', ...restaurant, founder: 'Guisepe' }
+console.log(newRestaurant);
+
+// Shallow copy of objects
+const restaurantCopy = { ...restaurant }
+restaurantCopy.name = 'Ristorante ROMA';
+console.log(restaurant.name);
+console.log(restaurantCopy.name);
+
+// console.log(restaurant.order(3, 1));
+
+// restaurant.orderDelivery({
+//   categoryIndex: 3,
+//   starterIndex: 1,
+//   mainIndex: 1,
+//   hours: '17:30',
+//   adress: 'Kalvariju 12'
+// });
+
+// restaurant.orderDelivery({})
+
+// /////////////////////////////////
+// //Destructuring Objects
+// const { name, categories, openingHours } = restaurant;
+// console.log(name, categories, openingHours);
+
+// const { name: restaurantName, openingHours: hours, categories: tags } = restaurant
+// console.log(restaurantName, hours, tags);
+
+// //Default values
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+
+// //Mutating variables
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+
+// ({ a, b } = obj);
+// console.log(a, b);
+
+// //nested objects
+// const { fri: { open: o, close: c } } = openingHours;
+// console.log(o, c);
 
 
 // /////////////////////////////////
