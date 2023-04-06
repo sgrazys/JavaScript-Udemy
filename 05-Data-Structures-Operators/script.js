@@ -37,55 +37,106 @@ const restaurant = {
 
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your  deliscios pasta with ${ing1}, ${ing2} and ${ing3}  `);
+
+  },
+
+  orderPizza: function (...ingridients) {
+    console.log(`Your ordered pizza with: ${ingridients}`);
+    console.log(ingridients);
   }
+
 };
+
+//////////////////////////////////
+// 1) DESTRUCTURING
+
+//Rest Pattern (...)
+
+// SPREAD operator becaus on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+console.log(arr);
+
+// RESR operator becaus on LEFT side of =
+
+const [a, b, ...rest] = arr;
+console.log(a, b, rest);
+
+
+const [pizza, , rissoto, ...restMainMenu] = [...restaurant.mainMenu, ...restaurant.starterMenu]
+console.log(pizza, rissoto, restMainMenu);
+
+//Object
+const { sat, ...weekdays } = restaurant.openingHours
+console.log(sat);
+console.log(weekdays);
+
+// 2) FUNCTIONS
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i]
+  }
+  console.log(sum);
+}
+
+add(2, 3)
+add(5, 3, 7, 2)
+add(4, 5, 7, 2, 7, 9, 11)
+
+
+const x = [23, 7, 5]
+add(...x)
+
+restaurant.orderPizza('Cheese', 'Saliami', ' Ham', ' Mushrooms')
+restaurant.orderPizza('Cheese', 'Barbecu sauce ')
+restaurant.orderPizza('Suris', ' padazas', ' austres', ' krevetes')
 
 //////////////////////////////////
 //Spread Operator (...)
 
-const arr = [7, 8, 9]
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// const arr = [7, 8, 9]
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
 
-//SPREAD Array
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+// //SPREAD Array
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
 
-//SPREAD as arguments in functions
-console.log(...newArr);
+// //SPREAD as arguments in functions
+// console.log(...newArr);
 
-//Spread to extend array
-const newMenu = [...restaurant.mainMenu, 'Lasagnia'];
-console.log(newMenu);
+// //Spread to extend array
+// const newMenu = [...restaurant.mainMenu, 'Lasagnia'];
+// console.log(newMenu);
 
-//COPY array | Shallow copy
-const mainMenuCopy = [...restaurant.mainMenu];
+// //COPY array | Shallow copy
+// const mainMenuCopy = [...restaurant.mainMenu];
 
-//Join 2 or more arrays
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+// //Join 2 or more arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
 
-// Iterables: arrays, strings, maps, sets... NOT objects!
+// // Iterables: arrays, strings, maps, sets... NOT objects!
 
-//SPREAD on string
-const str = 'Marlon';
-const letters = [...str, ' ', 'B.'];
-console.log(letters);
-console.log(...str)
+// //SPREAD on string
+// const str = 'Marlon';
+// const letters = [...str, ' ', 'B.'];
+// console.log(letters);
+// console.log(...str)
 
-// get ingridients to orderPasta method from prompt window
-// const ingridients = [prompt('Let\'s make pasta! Ingridient 1: '), prompt('Ingridient 2: '), prompt('Ingridient 3: ')];
-// restaurant.orderPasta(...ingridients);
+// // get ingridients to orderPasta method from prompt window
+// // const ingridients = [prompt('Let\'s make pasta! Ingridient 1: '), prompt('Ingridient 2: '), prompt('Ingridient 3: ')];
+// // restaurant.orderPasta(...ingridients);
 
-// Objects
-const newRestaurant = { since: '1964', ...restaurant, founder: 'Guisepe' }
-console.log(newRestaurant);
+// // Objects
+// const newRestaurant = { since: '1964', ...restaurant, founder: 'Guisepe' }
+// console.log(newRestaurant);
 
-// Shallow copy of objects
-const restaurantCopy = { ...restaurant }
-restaurantCopy.name = 'Ristorante ROMA';
-console.log(restaurant.name);
-console.log(restaurantCopy.name);
+// // Shallow copy of objects
+// const restaurantCopy = { ...restaurant }
+// restaurantCopy.name = 'Ristorante ROMA';
+// console.log(restaurant.name);
+// console.log(restaurantCopy.name);
 
 // console.log(restaurant.order(3, 1));
 
