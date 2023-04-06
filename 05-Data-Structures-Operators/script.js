@@ -47,49 +47,109 @@ const restaurant = {
 
 };
 
-//////////////////////////////////
-// 1) DESTRUCTURING
+// Logical operators can use ANY data type, return ANY data type, and they are used for short-cutting
+console.log(`
+-----OR-----
+`);
+// Grazina pirma TRUE reiksme
+console.log(3 || 'Tauras');
+console.log('' || 'Tauras'); // Tauras
+console.log(true || 0); //True
+console.log(undefined || null); // null
 
-//Rest Pattern (...)
+console.log(undefined || '' || null || 0 || 'Jokubas');
+console.log(undefined || '' || null || 0);
+console.log(null || '' || null || 0 || undefined);
 
-// SPREAD operator becaus on RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
-console.log(arr);
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
 
-// RESR operator becaus on LEFT side of =
+const guests2 = restaurant.numGuests || 15
+console.log(guests2);
 
-const [a, b, ...rest] = arr;
-console.log(a, b, rest);
+console.log(`
+-----AND-----
+`);
+
+//Grazina pirma false reiksme
+console.log(0 && 'Jokubas');
+console.log('Tauras' && 0);
+console.log('Tauras' && 'Jokubas' && 0);
+console.log('Tauras' && 0 && 'Jokubas');
+console.log('Tauras' && 1 && 'Jokubas' && 100); // jeigu visu yra true grazina paskutine reiksme
+console.log(!'Tauras' && !null && !0 && !'' && null && undefined);
 
 
-const [pizza, , rissoto, ...restMainMenu] = [...restaurant.mainMenu, ...restaurant.starterMenu]
-console.log(pizza, rissoto, restMainMenu);
+console.log('Hello' && 23 && null && 'Jokubas');
 
-//Object
-const { sat, ...weekdays } = restaurant.openingHours
-console.log(sat);
-console.log(weekdays);
-
-// 2) FUNCTIONS
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i]
-  }
-  console.log(sum);
+// Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('grybais', 'shpinatais')
 }
 
-add(2, 3)
-add(5, 3, 7, 2)
-add(4, 5, 7, 2, 7, 9, 11)
+restaurant.orderPizza && restaurant.orderPizza('grybais', 'spinatais');
 
 
-const x = [23, 7, 5]
-add(...x)
+console.log(`
+-----PASIZAIDIMAS-----
+`);
 
-restaurant.orderPizza('Cheese', 'Saliami', ' Ham', ' Mushrooms')
-restaurant.orderPizza('Cheese', 'Barbecu sauce ')
-restaurant.orderPizza('Suris', ' padazas', ' austres', ' krevetes')
+
+const b2 = restaurant.name || 'Juodasis kalnas'
+const c2 = restaurant.pavadinimas || 'Juodasis kalnas'
+
+console.log(b2);
+console.log(c2);
+
+restaurant.orderDelivery && restaurant.orderDelivery(2, 1, '19:45', 'Kalvariju 19');
+restaurant.orderPristatymas && restaurant.orderDelivery(2, 1, '19:45', 'Kalvariju 19');
+
+
+
+// //////////////////////////////////
+// // 1) DESTRUCTURING
+
+// //Rest Pattern (...)
+
+// // SPREAD operator becaus on RIGHT side of =
+// const arr = [1, 2, ...[3, 4]];
+// console.log(arr);
+
+// // RESR operator becaus on LEFT side of =
+
+// const [a, b, ...rest] = arr;
+// console.log(a, b, rest);
+
+
+// const [pizza, , rissoto, ...restMainMenu] = [...restaurant.mainMenu, ...restaurant.starterMenu]
+// console.log(pizza, rissoto, restMainMenu);
+
+// //Object
+// const { sat, ...weekdays } = restaurant.openingHours
+// console.log(sat);
+// console.log(weekdays);
+
+// // 2) FUNCTIONS
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i]
+//   }
+//   console.log(sum);
+// }
+
+// add(2, 3)
+// add(5, 3, 7, 2)
+// add(4, 5, 7, 2, 7, 9, 11)
+
+
+// const x = [23, 7, 5]
+// add(...x)
+
+// restaurant.orderPizza('Cheese', 'Saliami', ' Ham', ' Mushrooms')
+// restaurant.orderPizza('Cheese', 'Barbecu sauce ')
+// restaurant.orderPizza('Suris', ' padazas', ' austres', ' krevetes')
 
 //////////////////////////////////
 //Spread Operator (...)
