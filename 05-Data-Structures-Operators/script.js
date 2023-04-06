@@ -47,63 +47,74 @@ const restaurant = {
 
 };
 
-// Logical operators can use ANY data type, return ANY data type, and they are used for short-cutting
-console.log(`
------OR-----
-`);
-// Grazina pirma TRUE reiksme
-console.log(3 || 'Tauras');
-console.log('' || 'Tauras'); // Tauras
-console.log(true || 0); //True
-console.log(undefined || null); // null
-
-console.log(undefined || '' || null || 0 || 'Jokubas');
-console.log(undefined || '' || null || 0);
-console.log(null || '' || null || 0 || undefined);
-
+//Nulish coalescing operator ---> ??
+// Nulish values: null ir undetified (NOT 0 ar '' )
 restaurant.numGuests = 0;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
 
-const guests2 = restaurant.numGuests || 15
-console.log(guests2);
-
-console.log(`
------AND-----
-`);
-
-//Grazina pirma false reiksme
-console.log(0 && 'Jokubas');
-console.log('Tauras' && 0);
-console.log('Tauras' && 'Jokubas' && 0);
-console.log('Tauras' && 0 && 'Jokubas');
-console.log('Tauras' && 1 && 'Jokubas' && 100); // jeigu visu yra true grazina paskutine reiksme
-console.log(!'Tauras' && !null && !0 && !'' && null && undefined);
+const guests = restaurant.numGuests || 15
+console.log(guests);
 
 
-console.log('Hello' && 23 && null && 'Jokubas');
+const guestsCorrect = restaurant.numGuests ?? 15
+console.log(guestsCorrect);
 
-// Practical example
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('grybais', 'shpinatais')
-}
+// Logical operators can use ANY data type, return ANY data type, and they are used for short-cutting
+// console.log(`
+// -----OR-----
+// `);
+// // Grazina pirma TRUE reiksme
+// console.log(3 || 'Tauras');
+// console.log('' || 'Tauras'); // Tauras
+// console.log(true || 0); //True
+// console.log(undefined || null); // null
 
-restaurant.orderPizza && restaurant.orderPizza('grybais', 'spinatais');
+// console.log(undefined || '' || null || 0 || 'Jokubas');
+// console.log(undefined || '' || null || 0);
+// console.log(null || '' || null || 0 || undefined);
+
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 15
+// console.log(guests2);
+
+// console.log(`
+// -----AND-----
+// `);
+
+// //Grazina pirma false reiksme
+// console.log(0 && 'Jokubas');
+// console.log('Tauras' && 0);
+// console.log('Tauras' && 'Jokubas' && 0);
+// console.log('Tauras' && 0 && 'Jokubas');
+// console.log('Tauras' && 1 && 'Jokubas' && 100); // jeigu visu yra true grazina paskutine reiksme
+// console.log(!'Tauras' && !null && !0 && !'' && null && undefined);
 
 
-console.log(`
------PASIZAIDIMAS-----
-`);
+// console.log('Hello' && 23 && null && 'Jokubas');
+
+// // Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('grybais', 'shpinatais')
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('grybais', 'spinatais');
 
 
-const b2 = restaurant.name || 'Juodasis kalnas'
-const c2 = restaurant.pavadinimas || 'Juodasis kalnas'
+// console.log(`
+// -----PASIZAIDIMAS-----
+// `);
 
-console.log(b2);
-console.log(c2);
 
-restaurant.orderDelivery && restaurant.orderDelivery(2, 1, '19:45', 'Kalvariju 19');
-restaurant.orderPristatymas && restaurant.orderDelivery(2, 1, '19:45', 'Kalvariju 19');
+// const b2 = restaurant.name || 'Juodasis kalnas'
+// const c2 = restaurant.pavadinimas || 'Juodasis kalnas'
+
+// console.log(b2);
+// console.log(c2);
+
+// restaurant.orderDelivery && restaurant.orderDelivery(2, 1, '19:45', 'Kalvariju 19');
+// restaurant.orderPristatymas && restaurant.orderDelivery(2, 1, '19:45', 'Kalvariju 19');
 
 
 
