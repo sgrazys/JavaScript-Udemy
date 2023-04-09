@@ -47,37 +47,56 @@ const restaurant = {
 
 };
 
-//////////////////////
-// LOGICAL ASSIGNMENT OPERATORS
+// //////////////////////
+// // FOR-OF LOOP
 
-const rest1 = {
-  name: 'Capr1',
-  // numGuests: 20
-  numGuests: 0
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+for (const dish of menu) console.log(dish);
+
+for (const [nr, dish] of menu.entries()) {
+  console.log(`${nr + 1}: ${dish}`);
 }
-const rest2 = {
-  name: 'La Piazza',
-  owner: 'Jean Luca'
-}
 
-// rest1.numGuests = rest1.numGuests || 10
-// rest2.numGuests = rest2.numGuests || 10
+// console.log([...menu.entries()]);
+
+// //////////////////////
+// // LOGICAL ASSIGNMENT OPERATORS
+
+// const rest1 = {
+//   name: 'Capr1',
+//   // numGuests: 20
+//   numGuests: 0
+// }
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Jean Luca'
+// }
+
+// // rest1.numGuests = rest1.numGuests || 10
+// // rest2.numGuests = rest2.numGuests || 10
 
 
-// OR assignment operator
-// rest1.numGuests ||= 10;
-// rest2.numGuests ||= 10;
+// // OR assignment operator
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
 
-// Nullish assignement operator (null or undefined)
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// // console.log(rest1.numGuests);
+// // console.log(rest2.numGuests);
 
-// && assignment operator
-rest1.owner &&= '<ANONYMOUS>'
-rest2.owner &&= '<ANONYMOUS>'
+// // Nullish assignement operator (null or undefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+// console.log(rest1.numGuests);
+// console.log(rest2.numGuests);
 
-console.log(rest1);
-console.log(rest2);
+// // && assignment operator
+// rest1.owner &&= '<ANONYMOUS>'
+// rest2.owner &&= '<ANONYMOUS>'
+
+// console.log(rest1);
+// console.log(rest2);
 //Nulish coalescing operator ---> ??
 // Nulish values: null ir undetified (NOT 0 ar '' )
 // restaurant.numGuests = null;
