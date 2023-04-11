@@ -55,35 +55,73 @@ const restaurant = {
     console.log(`Your ordered pizza with: ${ingridients}`);
     console.log(ingridients);
   }
-
 };
+
+/////////////////////////
+// SETS
+
+const ordersSet = new Set(['Pasta',
+  'Pizza',
+  'Rissoto',
+  'Pizza',
+  'Rissoto',
+  'Pizza',
+])
+console.log(ordersSet);
+
+console.log(new Set('Jonas'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+
+ordersSet.add('Brusketa');
+ordersSet.add('Brusketa');
+ordersSet.delete('Rissoto')
+// ordersSet.clear()
+
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// Example
+const staff = ['Waiter', 'Shefas', 'Waiter', 'Manager', 'Shefas', 'Waiter'];
+
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(new Set(['Waiter', 'Shefas', 'Waiter', 'Manager', 'Shefas', 'Waiter']).size);
+
+console.log(new Set('SauliusGrazys').size);
+
+
+
+
 
 /////////////////////////
 // LOOPING OBJECTS. OBJ KEYS, VALUS, ENTRIES
 
+// // Property NAMES
+// const properties = Object.keys(hours);
+// // console.log(properties);
 
-// Property NAMES
-const properties = Object.keys(hours);
-// console.log(properties);
+// let str = `Restaurant is opening ${properties.length} days per week: `;
+// for (const day of properties) {
+//   str += `${day}, `
 
-let str = `Restaurant is opening ${properties.length} days per week: `;
-for (const day of properties) {
-  str += `${day}, `
+// }
+// console.log(str);
 
-}
-console.log(str);
+// // Prpperty VALUES
+// const openingHours = Object.values(hours)
+// // console.log(openingHours);
 
-// Prpperty VALUES
-const openingHours = Object.values(hours)
-// console.log(openingHours);
+// //LOOP OVER ENTIRE OBJECT
+// const entries = Object.entries(hours)
+// console.log(entries);
 
-//LOOP OVER ENTIRE OBJECT
-const entries = Object.entries(hours)
-console.log(entries);
-
-for (const [day, { open, close }] of entries) {
-  console.log(`On ${day} we are open at ${open} and close at ${close}`);
-}
+// for (const [day, { open, close }] of entries) {
+//   console.log(`On ${day} we are open at ${open} and close at ${close}`);
+// }
 
 
 /////////////////////////
