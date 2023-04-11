@@ -58,6 +58,35 @@ const restaurant = {
 
 };
 
+if (restaurant.hours && restaurant.hours.mon) console.log(restaurant.hours.mon.open);
+
+// console.log(restaurant.hours.mon.open);
+
+//WITH OPTIONAL CHAINING
+console.log(restaurant.hours.mon?.open);
+console.log(restaurant.hours?.mon?.open);
+
+//EXAMPLE
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // console.log(day);
+  const openHour = restaurant.hours[day]?.open ?? 'colsed';
+  console.log(`Restaurant on ${day} is open at ${openHour}`);
+}
+
+// METHODS
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.uzsakymas?.(0, 1) ?? 'Method does not exist');
+
+//ARRAYS
+const users = [{
+  name: 'Marlon', surname: 'Brando', email: 'marlon@brando.com'
+}];
+// const users = [];
+
+console.log(users.length);
+console.log(users[0]?.name ?? 'User item is empty');
 
 // // //////////////////////
 // // // FOR-OF LOOP
@@ -68,7 +97,7 @@ const restaurant = {
 // for (const dish of menu) console.log(dish);
 
 // for (const [nr, dish] of menu.entries()) {
-//   console.log(`${nr + 1}: ${dish}`);
+//   console.log(`${ nr + 1}: ${ dish } `);
 // }
 
 // console.log([...menu.entries()]);
