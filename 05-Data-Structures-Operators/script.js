@@ -82,11 +82,15 @@ console.log(restaurant.uzsakymas?.(0, 1) ?? 'Method does not exist');
 //ARRAYS
 const users = [{
   name: 'Marlon', surname: 'Brando', email: 'marlon@brando.com'
-}];
+},
+{ name: 'Russel', surname: 'Crowe' }
+];
 // const users = [];
 
 console.log(users.length);
 console.log(users[0]?.name ?? 'User item is empty');
+console.log(users[1]?.pastas ?? 'Pastas don\'t exist');
+console.log(users[1]?.surname ?? 'User item is empty');
 
 // // //////////////////////
 // // // FOR-OF LOOP
