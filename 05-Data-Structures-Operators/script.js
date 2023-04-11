@@ -58,39 +58,70 @@ const restaurant = {
 
 };
 
-if (restaurant.hours && restaurant.hours.mon) console.log(restaurant.hours.mon.open);
+/////////////////////////
+// LOOPING OBJECTS. OBJ KEYS, VALUS, ENTRIES
 
-// console.log(restaurant.hours.mon.open);
 
-//WITH OPTIONAL CHAINING
-console.log(restaurant.hours.mon?.open);
-console.log(restaurant.hours?.mon?.open);
+// Property NAMES
+const properties = Object.keys(hours);
+// console.log(properties);
 
-//EXAMPLE
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+let str = `Restaurant is opening ${properties.length} days per week: `;
+for (const day of properties) {
+  str += `${day}, `
 
-for (const day of days) {
-  // console.log(day);
-  const openHour = restaurant.hours[day]?.open ?? 'colsed';
-  console.log(`Restaurant on ${day} is open at ${openHour}`);
+}
+console.log(str);
+
+// Prpperty VALUES
+const openingHours = Object.values(hours)
+// console.log(openingHours);
+
+//LOOP OVER ENTIRE OBJECT
+const entries = Object.entries(hours)
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we are open at ${open} and close at ${close}`);
 }
 
-// METHODS
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.uzsakymas?.(0, 1) ?? 'Method does not exist');
 
-//ARRAYS
-const users = [{
-  name: 'Marlon', surname: 'Brando', email: 'marlon@brando.com'
-},
-{ name: 'Russel', surname: 'Crowe' }
-];
-// const users = [];
+/////////////////////////
+// OPTIONAL CHANGING
 
-console.log(users.length);
-console.log(users[0]?.name ?? 'User item is empty');
-console.log(users[1]?.pastas ?? 'Pastas don\'t exist');
-console.log(users[1]?.surname ?? 'User item is empty');
+// if (restaurant.hours && restaurant.hours.mon) console.log(restaurant.hours.mon.open);
+
+// // console.log(restaurant.hours.mon.open);
+
+// //WITH OPTIONAL CHAINING
+// console.log(restaurant.hours.mon?.open);
+// console.log(restaurant.hours?.mon?.open);
+
+// //EXAMPLE
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   // console.log(day);
+//   const openHour = restaurant.hours[day]?.open ?? 'colsed';
+//   console.log(`Restaurant on ${day} is open at ${openHour}`);
+// }
+
+// // METHODS
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.uzsakymas?.(0, 1) ?? 'Method does not exist');
+
+// //ARRAYS
+// const users = [{
+//   name: 'Marlon', surname: 'Brando', email: 'marlon@brando.com'
+// },
+// { name: 'Russel', surname: 'Crowe' }
+// ];
+// // const users = [];
+
+// console.log(users.length);
+// console.log(users[0]?.name ?? 'User item is empty');
+// console.log(users[1]?.pastas ?? 'Pastas don\'t exist');
+// console.log(users[1]?.surname ?? 'User item is empty');
 
 // // //////////////////////
 // // // FOR-OF LOOP
