@@ -58,87 +58,148 @@ const restaurant = {
 };
 
 // ///////////////////////////
-// // WORKING WITH STRINGS PART - 2
+//  WORKING WITH STRINGS PART - 3
 
-const airline = 'TAP Air Portugal';
+// SPLIT and JOIN
+console.log('a+very+nice+string'.split('+'));
+console.log('Saulius Grazys'.split(' '));
 
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
-console.log('tauras'.toUpperCase());
+const [firstName, lastName] = 'Saulius Grazys'.split(' ');
+console.log(firstName, lastName);
 
-//FIX cpitalisation in name
-const passenger = 'joKubAS' // Tauras
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
 
-const passengerLower = passenger.toLocaleLowerCase();
-const passengerCorrect = passenger[0].toUpperCase() + passengerLower.slice(1);
-console.log(passengerCorrect);
 
-const fixName = function (name) {
-  const nameLower = name.toLocaleLowerCase();
-  const fixedName = nameLower[0].toUpperCase() + nameLower.slice(1);
-  console.log(fixedName);
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()))
+  }
+
+  console.log(namesUpper.join(' '));
+
 }
 
-fixName('sAulIUS');
-fixName('Marija');
-fixName('TauRas');
-fixName('JOKubAS');
+capitalizeName('jessica ann smith davis');
+capitalizeName('tauras grazys');
 
+//PADDING
 
-// Comparing email
-const email = 'hello@labas.lt'
-const loginEmail = '  Hello@LAbas.LT \n' // \n - ENTER
+const message = 'Go to gate 23!'
 
-// const lowerEmail = loginEmail.toLowerCase();
-// const trimmedEmail = lowerEmail.trim();
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('Tauras'.padStart(20, '+').padEnd(30, '+'));
 
-const fixedEmail = loginEmail.toLocaleLowerCase().trim;
-console.log(fixedEmail);
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*')
 
-if (email === fixedEmail) console.log('Good to GO!!!!!');
-
-const compareEmails = function (email, checkEmail) {
-  const correct = email.toLowerCase();
-
-  if (correct === checkEmail) console.log('Good to Go!');
-  else console.log('Bad email');
 }
 
-compareEmails('saulius@grazys.lt', 'saulius@grazys.lt');
+console.log(maskCreditCard(57057366));
+console.log(maskCreditCard(3452832845705865));
+console.log(maskCreditCard('89346568702398572308476502'));
 
-// REPLACE parts of strings
+// REPEAT
 
-const priceGB = `288,97£`;
-const priceUS = priceGB.replace('£', '$').replace(',', '.');
-console.log(priceUS);
+const message2 = 'Bad weather... All departures delayed! ';
+console.log(message2.repeat(3));
 
-
-const announcment = 'All passengers come to boarding door 23. Boarding door 23!';
-// console.log(announcment.replace(/door/g, 'gate')); // REG EXPRESION
-console.log(announcment.replaceAll('door', 'gate'));
-
-
-//BOOLEANS
-const plane = 'Airbus A320neo';
-
-console.log(plane.includes('A320'));
-console.log(plane.includes('Boeing'));
-console.log(plane.startsWith('Air'));
-
-if (plane.startsWith('Airbus') && plane.endsWith('neo')) console.log('Part of Airbus Family');
-
-//Practice Exercise
-const checkBaggage = function (items) {
-  const baggage = items.toLowerCase();
-
-  if (baggage.includes('knife') || baggage.includes('gun')) console.log('You are not allowed on borad');
-  else console.log('Welcome aboard!');
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in the line ${'🛩️'.repeat(n)}.`);
 }
 
+planesInLine(4);
+planesInLine(3);
+planesInLine(12);
 
-checkBaggage('I have a laptop, some Food and a pocket Knife');
-checkBaggage('Socks and camere');
-checkBaggage('Got snacks and gun for protection');
+// // ///////////////////////////
+//  WORKING WITH STRINGS PART - 2
+
+// const airline = 'TAP Air Portugal';
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+// console.log('tauras'.toUpperCase());
+
+// //FIX cpitalisation in name
+// const passenger = 'joKubAS' // Tauras
+
+// const passengerLower = passenger.toLocaleLowerCase();
+// const passengerCorrect = passenger[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// const fixName = function (name) {
+//   const nameLower = name.toLocaleLowerCase();
+//   const fixedName = nameLower[0].toUpperCase() + nameLower.slice(1);
+//   console.log(fixedName);
+// }
+
+// fixName('sAulIUS');
+// fixName('Marija');
+// fixName('TauRas');
+// fixName('JOKubAS');
+
+
+// // Comparing email
+// const email = 'hello@labas.lt'
+// const loginEmail = '  Hello@LAbas.LT \n' // \n - ENTER
+
+// // const lowerEmail = loginEmail.toLowerCase();
+// // const trimmedEmail = lowerEmail.trim();
+
+// const fixedEmail = loginEmail.toLocaleLowerCase().trim;
+// console.log(fixedEmail);
+
+// if (email === fixedEmail) console.log('Good to GO!!!!!');
+
+// const compareEmails = function (email, checkEmail) {
+//   const correct = email.toLowerCase();
+
+//   if (correct === checkEmail) console.log('Good to Go!');
+//   else console.log('Bad email');
+// }
+
+// compareEmails('saulius@grazys.lt', 'saulius@grazys.lt');
+
+// // REPLACE parts of strings
+
+// const priceGB = `288,97£`;
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+
+
+// const announcment = 'All passengers come to boarding door 23. Boarding door 23!';
+// // console.log(announcment.replace(/door/g, 'gate')); // REG EXPRESION
+// console.log(announcment.replaceAll('door', 'gate'));
+
+
+// //BOOLEANS
+// const plane = 'Airbus A320neo';
+
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) console.log('Part of Airbus Family');
+
+// //Practice Exercise
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+
+//   if (baggage.includes('knife') || baggage.includes('gun')) console.log('You are not allowed on borad');
+//   else console.log('Welcome aboard!');
+// }
+
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camere');
+// checkBaggage('Got snacks and gun for protection');
 
 
 // ///////////////////////////
@@ -586,11 +647,11 @@ checkBaggage('Got snacks and gun for protection');
 
 // /////////////////////////////////
 // //Destructuring Objects
-// const { name, categories, openingHours } = restaurant;
-// console.log(name, categories, openingHours);
+// const { firstName, categories, openingHours } = restaurant;
+// console.log(firstName, categories, openingHours);
 
-// const { name: restaurantName, openingHours: hours, categories: tags } = restaurant
-// console.log(restaurantName, hours, tags);
+// const { name: restaurantfirstName, openingHours: hours, categories: tags } = restaurant
+// console.log(restaurantfirstName, hours, tags);
 
 // //Default values
 // const { menu = [], starterMenu: starters = [] } = restaurant;
