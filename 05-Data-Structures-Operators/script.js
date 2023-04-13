@@ -57,42 +57,85 @@ const restaurant = {
   }
 };
 
-// /////////////////////////
-// // MAPS - from Object to map
+///////////////////////////
+// WORKING WITH STRINGS PART -1 
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct 🥳'],
-  [false, 'Try again!']
-])
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
 
-// // MAPS - ITERATION
-console.log(question);
-const hoursMap = new Map(Object.entries(hours));
-console.log(hoursMap);
 
-console.log(question.get('question'));
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+console.log(airline.length);
+console.log('B737'.length);
+
+//METHODS
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  //B and E are middle seats
+  const s = seat.slice(-1);
+
+  if (s === 'B' || s === 'E') console.log(`${seat} IS in the middle`);
+
+  else console.log(`${seat} NOT in the middle`);
+
 }
 
-// const answer = Number(prompt('Choose answer'));
-// console.log(answer);
+checkMiddleSeat('11A');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
 
-// console.log(question.get(answer === question.get('correct')));
+
+// // /////////////////////////
+// // // MAPS - from Object to map
+
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🥳'],
+//   [false, 'Try again!']
+// ])
+
+// // // MAPS - ITERATION
+// console.log(question);
+// const hoursMap = new Map(Object.entries(hours));
+// console.log(hoursMap);
+
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+// // const answer = Number(prompt('Choose answer'));
+// // console.log(answer);
+
+// // console.log(question.get(answer === question.get('correct')));
 
 
-// Convert map to array
-console.log([...question]);
-console.log(question);
+// // Convert map to array
+// console.log([...question]);
+// console.log(question);
 
-// take keys, values
-console.log([...question.keys()]);
-console.log([...question.values()]);
+// // take keys, values
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
 
 // /////////////////////////
 // // MAPS
