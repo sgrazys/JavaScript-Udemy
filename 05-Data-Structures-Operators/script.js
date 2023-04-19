@@ -1,8 +1,7 @@
 'use strict';
 
 // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
 
 
 //////////////////
@@ -57,66 +56,84 @@ const restaurant = {
   }
 };
 
-// ///////////////////////////
-//  WORKING WITH STRINGS PART - 3
+// // ///////////////////////////
+// //  WORKING WITH STRINGS PART - PRACTICE
 
-// SPLIT and JOIN
-console.log('a+very+nice+string'.split('+'));
-console.log('Saulius Grazys'.split(' '));
+const getCode = str => str.toUpperCase().slice(0, 3);
 
-const [firstName, lastName] = 'Saulius Grazys'.split(' ');
-console.log(firstName, lastName);
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(newName);
+const flightsInfoArr = flights.split('+');
+for (const flight of flightsInfoArr) {
+  const [status, from, to, time] = flight.split(';');
+  const result = `${status.startsWith('_Delayed') ? '🔴' : ''}${status.replaceAll('_', ' ')} from ${getCode(from)} to ${getCode(to)} (${time.replace(':', 'h')})`.padStart(44)
 
-
-const capitalizeName = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
-
-  for (const n of names) {
-    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
-    namesUpper.push(n.replace(n[0], n[0].toUpperCase()))
-  }
-
-  console.log(namesUpper.join(' '));
+  console.log(result);
 
 }
 
-capitalizeName('jessica ann smith davis');
-capitalizeName('tauras grazys');
 
-//PADDING
+// // ///////////////////////////
+// //  WORKING WITH STRINGS PART - 3
 
-const message = 'Go to gate 23!'
+// // SPLIT and JOIN
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Saulius Grazys'.split(' '));
 
-console.log(message.padStart(20, '+').padEnd(30, '+'));
-console.log('Tauras'.padStart(20, '+').padEnd(30, '+'));
+// const [firstName, lastName] = 'Saulius Grazys'.split(' ');
+// console.log(firstName, lastName);
 
-const maskCreditCard = function (number) {
-  const str = number + '';
-  const last = str.slice(-4);
-  return last.padStart(str.length, '*')
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
 
-}
 
-console.log(maskCreditCard(57057366));
-console.log(maskCreditCard(3452832845705865));
-console.log(maskCreditCard('89346568702398572308476502'));
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
 
-// REPEAT
+//   for (const n of names) {
+//     // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//     namesUpper.push(n.replace(n[0], n[0].toUpperCase()))
+//   }
 
-const message2 = 'Bad weather... All departures delayed! ';
-console.log(message2.repeat(3));
+//   console.log(namesUpper.join(' '));
 
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in the line ${'🛩️'.repeat(n)}.`);
-}
+// }
 
-planesInLine(4);
-planesInLine(3);
-planesInLine(12);
+// capitalizeName('jessica ann smith davis');
+// capitalizeName('tauras grazys');
+
+// //PADDING
+
+// const message = 'Go to gate 23!'
+
+// console.log(message.padStart(20, '+').padEnd(30, '+'));
+// console.log('Tauras'.padStart(20, '+').padEnd(30, '+'));
+
+// const maskCreditCard = function (number) {
+//   const str = number + '';
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*')
+
+// }
+
+// console.log(maskCreditCard(57057366));
+// console.log(maskCreditCard(3452832845705865));
+// console.log(maskCreditCard('89346568702398572308476502'));
+
+// // REPEAT
+
+// const message2 = 'Bad weather... All departures delayed! ';
+// console.log(message2.repeat(3));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in the line ${'🛩️'.repeat(n)}.`);
+// }
+
+// planesInLine(4);
+// planesInLine(3);
+// planesInLine(12);
 
 // // ///////////////////////////
 //  WORKING WITH STRINGS PART - 2
