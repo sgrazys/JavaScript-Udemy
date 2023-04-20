@@ -61,59 +61,83 @@
 // FIRST-CLASS AND HIGHER-ORDER FUNCTIONS
 // Functions accepting callback functions
 
-const oneWord = function (string) {
-  return string.replaceAll(' ', '').toLowerCase()
+// const oneWord = function (string) {
+//   return string.replaceAll(' ', '').toLowerCase()
+// }
+
+// const upperFirstWord = function (str) {
+//   const [first, ...other] = str.split(' ');
+
+//   return [first.toUpperCase(), ...other].join(' ')
+// }
+
+// //Hgher-order functionß
+// const transformer = function (str, fn) {
+
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+
+//   console.log(`Transformed by: ${fn.name}`);
+// }
+
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
+
+
+// // JS usese callback all the time
+// const highFive = function () {
+//   console.log('👋');
+// }
+
+// document.body.addEventListener('click', highFive);
+// ['Tauras', 'Jokubas', 'Marija'].forEach(highFive);
+
+
+// const skaiciai = [2, 46, 77, 89, 108, 23, 24];
+// const skaiciai2 = [21, 426, 737, 8339, 2108, 2312, 24, 0, 12];
+
+
+// const filterEven = function (array) {
+//   return array.filter(n => n % 2 === 0).join(' ');
+// }
+
+// const evenNumbers = function (n, fn) {
+//   console.log(`Even numbers are ${fn(n)}`);
+// }
+
+// evenNumbers(skaiciai, filterEven);
+// evenNumbers(skaiciai2, filterEven);
+
+// const name = function (name) {
+//   return name;
+// }
+
+// const greeting = function (str, fn, name) {
+//   console.log(`${str} ${fn(name)}`);
+// }
+
+// greeting('Laba diena', name, 'Saulius');
+
+
+////////////////////////////////////////
+//Functions returning functions
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  }
 }
 
-const upperFirstWord = function (str) {
-  const [first, ...other] = str.split(' ');
+const greeterHey = greet('Sveikas')
 
-  return [first.toUpperCase(), ...other].join(' ')
-}
-
-//Hgher-order functionß
-const transformer = function (str, fn) {
-
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
-
-  console.log(`Transformed by: ${fn.name}`);
-}
-
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+greeterHey('Tauras');
+greeterHey('Jokubas');
 
 
-// JS usese callback all the time
-const highFive = function () {
-  console.log('👋');
-}
+greet('Hello')('Marija');
 
-document.body.addEventListener('click', highFive);
-['Tauras', 'Jokubas', 'Marija'].forEach(highFive);
+const greet1 = greeting => name => console.log(`${greeting} ${name}`);
+
+greet1('Labas')('Saulius')
 
 
-const skaiciai = [2, 46, 77, 89, 108, 23, 24];
-const skaiciai2 = [21, 426, 737, 8339, 2108, 2312, 24, 0, 12];
-
-
-const filterEven = function (array) {
-  return array.filter(n => n % 2 === 0).join(' ');
-}
-
-const evenNumbers = function (n, fn) {
-  console.log(`Even numbers are ${fn(n)}`);
-}
-
-evenNumbers(skaiciai, filterEven);
-evenNumbers(skaiciai2, filterEven);
-
-const name = function (name) {
-  return name;
-}
-
-const greeting = function (str, fn, name) {
-  console.log(`${str} ${fn(name)}`);
-}
-
-greeting('Laba diena', name, 'Saulius');
