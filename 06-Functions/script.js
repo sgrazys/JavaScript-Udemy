@@ -40,13 +40,19 @@ const checkIn = function (flightNum, passenger) {
     passenger.name = 'Mr.' + passenger.name;
 
   if (passenger.passport === 12634594123) {
-    alert('Check in')
+    alert('Checked in')
   } else {
     alert('Wrong passport!')
   }
 }
 
-checkIn(flight, jokubas);
+// checkIn(flight, jokubas);
+// console.log(flight);
+// console.log(jokubas);
 
-console.log(flight);
-console.log(jokubas);
+const newPassport = function (person) {
+  person.passport = Math.trunc(Math.random() * 1000000000);
+}
+
+newPassport(jokubas)
+checkIn(flight, jokubas);
