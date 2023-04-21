@@ -142,7 +142,7 @@
 
 
 ////////////////////////////////////////
-//THE CALL AND APPLY METHODS
+//THE CALL, APPLY AND BIND METHODS
 
 
 const lufthansa = {
@@ -194,7 +194,6 @@ console.log(swiss);
 console.log(swiss.bookings);
 
 // APPLY METHOD
-
 const flightDate = [
   [6996, 'Markas Tvenas'],
   [7000, 'Arunas Visockas'],
@@ -207,3 +206,76 @@ console.log(swiss.bookings);
 
 bookFlight.call(swiss, ...flightDate[2])
 bookFlight.call(swiss, ...flightDate[0])
+
+//BIND METHOD
+// bookFlight.call(eurowings, 'MG2345', 'Marija Graziene');
+
+const bookEW = bookFlight.bind(eurowings);
+const bookLH = bookFlight.bind(lufthansa);
+const bookSW = bookFlight.bind(swiss);
+
+bookEW(2367, 'Leo Dicapo');
+console.log(eurowings);
+
+const bookEW99 = bookFlight.bind(eurowings, 99);
+bookEW99('Michael Jordan');
+bookEW99('Karl Malone');
+
+// With event listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++
+  console.log(this.planes);
+}
+// lufthansa.buyPlane()
+
+const buyPlaneDOM = document.querySelector('.buy');
+// buyPlaneDOM.addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+
+swiss.planes = 100;
+swiss.buyPlaneSW = function () {
+
+  console.log(this);
+  this.planes++
+
+  console.log(this.planes);
+}
+buyPlaneDOM.addEventListener('click', swiss.buyPlaneSW.bind(swiss))
+
+
+// Partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23)
+// addVAT = value => value + value * 0.23;
+
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+console.log(Number(addVAT(23.23).toFixed(2)));
+
+const pridetiMokescius = function (mokestis) {
+  return function (suma) {
+    return suma + suma * mokestis
+  }
+}
+
+const pridetiPVM = pridetiMokescius(0.21);
+console.log(pridetiPVM(10));
+
+
+
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate
+  }
+}
+
+const addVAT2 = addTaxRate(0.21);
+
+console.log(addVAT2(100));
+console.log(addVAT2(500));
