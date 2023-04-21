@@ -122,22 +122,88 @@
 ////////////////////////////////////////
 //Functions returning functions
 
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   }
+// }
+
+// const greeterHey = greet('Sveikas')
+
+// greeterHey('Tauras');
+// greeterHey('Jokubas');
+
+
+// greet('Hello')('Marija');
+
+// const greet1 = greeting => name => console.log(`${greeting} ${name}`);
+
+// greet1('Labas')('Saulius')
+
+
+////////////////////////////////////////
+//THE CALL AND APPLY METHODS
+
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function(){}
+  book(flightNum, name) {
+    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+    this.bookings.push({ flight: `${name} flight ${this.iataCode}${flightNum}` })
+
   }
+
 }
 
-const greeterHey = greet('Sveikas')
-
-greeterHey('Tauras');
-greeterHey('Jokubas');
-
-
-greet('Hello')('Marija');
-
-const greet1 = greeting => name => console.log(`${greeting} ${name}`);
-
-greet1('Labas')('Saulius')
+lufthansa.book('3412', 'Tauras Grazys');
+lufthansa.book('7812', 'Jokubas Zigas');
+console.log(lufthansa);
+console.log(lufthansa.bookings);
 
 
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+
+// CALL METHOD
+const bookFlight = lufthansa.book
+
+bookFlight.call(eurowings, 'MG2345', 'Marija Graziene');
+bookFlight.call(eurowings, 'SG1892', 'Saulius Grazys');
+console.log(eurowings);
+console.log(eurowings.bookings);
+
+
+bookFlight.call(lufthansa, 9999, 'Sandra Bullock');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Airlines',
+  iataCode: 'LX',
+  bookings: []
+}
+
+bookFlight.call(swiss, 6996, 'Angelina Jolie');
+console.log(swiss);
+console.log(swiss.bookings);
+
+// APPLY METHOD
+
+const flightDate = [
+  [6996, 'Markas Tvenas'],
+  [7000, 'Arunas Visockas'],
+  [8989, 'Russel Crow']
+];
+
+
+console.log(swiss);
+console.log(swiss.bookings);
+
+bookFlight.call(swiss, ...flightDate[2])
+bookFlight.call(swiss, ...flightDate[0])
