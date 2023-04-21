@@ -142,140 +142,140 @@
 
 
 ////////////////////////////////////////
-//THE CALL, APPLY AND BIND METHODS
+// //THE CALL, APPLY AND BIND METHODS
 
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  // book: function(){}
-  book(flightNum, name) {
-    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
-    this.bookings.push({ flight: `${name} flight ${this.iataCode}${flightNum}` })
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   // book: function(){}
+//   book(flightNum, name) {
+//     console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+//     this.bookings.push({ flight: `${name} flight ${this.iataCode}${flightNum}` })
 
-  }
+//   }
 
-}
+// }
 
-lufthansa.book('3412', 'Tauras Grazys');
-lufthansa.book('7812', 'Jokubas Zigas');
-console.log(lufthansa);
-console.log(lufthansa.bookings);
-
-
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-};
+// lufthansa.book('3412', 'Tauras Grazys');
+// lufthansa.book('7812', 'Jokubas Zigas');
+// console.log(lufthansa);
+// console.log(lufthansa.bookings);
 
 
-// CALL METHOD
-const bookFlight = lufthansa.book
-
-bookFlight.call(eurowings, 'MG2345', 'Marija Graziene');
-bookFlight.call(eurowings, 'SG1892', 'Saulius Grazys');
-console.log(eurowings);
-console.log(eurowings.bookings);
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
 
 
-bookFlight.call(lufthansa, 9999, 'Sandra Bullock');
-console.log(lufthansa);
+// // CALL METHOD
+// const bookFlight = lufthansa.book
 
-const swiss = {
-  airline: 'Swiss Airlines',
-  iataCode: 'LX',
-  bookings: []
-}
-
-bookFlight.call(swiss, 6996, 'Angelina Jolie');
-console.log(swiss);
-console.log(swiss.bookings);
-
-// APPLY METHOD
-const flightDate = [
-  [6996, 'Markas Tvenas'],
-  [7000, 'Arunas Visockas'],
-  [8989, 'Russel Crow']
-];
-
-
-console.log(swiss);
-console.log(swiss.bookings);
-
-bookFlight.call(swiss, ...flightDate[2])
-bookFlight.call(swiss, ...flightDate[0])
-
-//BIND METHOD
 // bookFlight.call(eurowings, 'MG2345', 'Marija Graziene');
-
-const bookEW = bookFlight.bind(eurowings);
-const bookLH = bookFlight.bind(lufthansa);
-const bookSW = bookFlight.bind(swiss);
-
-bookEW(2367, 'Leo Dicapo');
-console.log(eurowings);
-
-const bookEW99 = bookFlight.bind(eurowings, 99);
-bookEW99('Michael Jordan');
-bookEW99('Karl Malone');
-
-// With event listeners
-lufthansa.planes = 300;
-lufthansa.buyPlane = function () {
-  console.log(this);
-
-  this.planes++
-  console.log(this.planes);
-}
-// lufthansa.buyPlane()
-
-const buyPlaneDOM = document.querySelector('.buy');
-// buyPlaneDOM.addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+// bookFlight.call(eurowings, 'SG1892', 'Saulius Grazys');
+// console.log(eurowings);
+// console.log(eurowings.bookings);
 
 
-swiss.planes = 100;
-swiss.buyPlaneSW = function () {
+// bookFlight.call(lufthansa, 9999, 'Sandra Bullock');
+// console.log(lufthansa);
 
-  console.log(this);
-  this.planes++
+// const swiss = {
+//   airline: 'Swiss Airlines',
+//   iataCode: 'LX',
+//   bookings: []
+// }
 
-  console.log(this.planes);
-}
-buyPlaneDOM.addEventListener('click', swiss.buyPlaneSW.bind(swiss))
+// bookFlight.call(swiss, 6996, 'Angelina Jolie');
+// console.log(swiss);
+// console.log(swiss.bookings);
 
-
-// Partial application
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
-
-const addVAT = addTax.bind(null, 0.23)
-// addVAT = value => value + value * 0.23;
-
-
-console.log(addVAT(100));
-console.log(addVAT(23));
-console.log(Number(addVAT(23.23).toFixed(2)));
-
-const pridetiMokescius = function (mokestis) {
-  return function (suma) {
-    return suma + suma * mokestis
-  }
-}
-
-const pridetiPVM = pridetiMokescius(0.21);
-console.log(pridetiPVM(10));
+// // APPLY METHOD
+// const flightDate = [
+//   [6996, 'Markas Tvenas'],
+//   [7000, 'Arunas Visockas'],
+//   [8989, 'Russel Crow']
+// ];
 
 
+// console.log(swiss);
+// console.log(swiss.bookings);
 
-const addTaxRate = function (rate) {
-  return function (value) {
-    return value + value * rate
-  }
-}
+// bookFlight.call(swiss, ...flightDate[2])
+// bookFlight.call(swiss, ...flightDate[0])
 
-const addVAT2 = addTaxRate(0.21);
+// //BIND METHOD
+// // bookFlight.call(eurowings, 'MG2345', 'Marija Graziene');
 
-console.log(addVAT2(100));
-console.log(addVAT2(500));
+// const bookEW = bookFlight.bind(eurowings);
+// const bookLH = bookFlight.bind(lufthansa);
+// const bookSW = bookFlight.bind(swiss);
+
+// bookEW(2367, 'Leo Dicapo');
+// console.log(eurowings);
+
+// const bookEW99 = bookFlight.bind(eurowings, 99);
+// bookEW99('Michael Jordan');
+// bookEW99('Karl Malone');
+
+// // With event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++
+//   console.log(this.planes);
+// }
+// // lufthansa.buyPlane()
+
+// const buyPlaneDOM = document.querySelector('.buy');
+// // buyPlaneDOM.addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+
+// swiss.planes = 100;
+// swiss.buyPlaneSW = function () {
+
+//   console.log(this);
+//   this.planes++
+
+//   console.log(this.planes);
+// }
+// buyPlaneDOM.addEventListener('click', swiss.buyPlaneSW.bind(swiss))
+
+
+// // Partial application
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// const addVAT = addTax.bind(null, 0.23)
+// // addVAT = value => value + value * 0.23;
+
+
+// console.log(addVAT(100));
+// console.log(addVAT(23));
+// console.log(Number(addVAT(23.23).toFixed(2)));
+
+// const pridetiMokescius = function (mokestis) {
+//   return function (suma) {
+//     return suma + suma * mokestis
+//   }
+// }
+
+// const pridetiPVM = pridetiMokescius(0.21);
+// console.log(pridetiPVM(10));
+
+
+
+// const addTaxRate = function (rate) {
+//   return function (value) {
+//     return value + value * rate
+//   }
+// }
+
+// const addVAT2 = addTaxRate(0.21);
+
+// console.log(addVAT2(100));
+// console.log(addVAT2(500));
