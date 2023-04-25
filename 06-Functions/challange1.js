@@ -37,4 +37,43 @@ const poll = {
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   answers: new Array(4).fill(0),
 
+  registerNewAnswer() {
+
+    const optionsOutput = this.options.join('\n')
+    const answer = Number(prompt(`${this.question}\n${optionsOutput}\n(Write option number)`))
+
+
+    if (answer >= 0 && answer < 4 && typeof answer === 'number') {
+      this.answers[answer]++
+      // console.log(poll.answers);
+
+    } else {
+      console.log('Please use only numbers between 0 and 3');
+    }
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else {
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
+
+  },
 }
+
+
+const pollDOM = document.querySelector('.poll');
+pollDOM.addEventListener('click', poll.registerNewAnswer.bind(poll))
+// pollDOM.addEventListener('click', poll.displayResults.bind(poll))
+
+//[5, 2, 3]
+//[1, 5, 3, 9, 6, 1]
+
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string')
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string')
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] })
+
