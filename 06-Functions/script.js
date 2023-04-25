@@ -279,3 +279,224 @@
 
 // console.log(addVAT2(100));
 // console.log(addVAT2(500));
+
+
+
+
+
+//////////////////////////////////////////////
+
+// const flight = `LH234`;
+// const person = {
+//   name: 'Marolon',
+//   passpport: 12345990,
+
+
+// }
+
+
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = 'LH999';
+//   passenger.name = 'Mr. ' + passenger.name
+
+//   if (passenger.passpport === 12345990) {
+//     alert('Checked In');
+//   } else {
+//     alert('Wrong passport num')
+//   }
+
+// }
+
+// checkIn(flight, person)
+// console.log(flight);
+// console.log(person);
+
+// const oneWord = function (str) {
+//   return str.replaceAll(' ', '').toLowerCase();
+// }
+
+// // console.log(oneWord('Saulius Grazys Zigas'));
+
+// const upperFirstWord = function (string) {
+//   const [first, ...others] = string.split(' ');
+
+//   return first.toUpperCase() + ' ' + others.join(' ');
+
+// }
+
+// // console.log(upperFirstWord('Saulius Grazys Tauras Grazys'));
+
+
+// const transfomer = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+
+//   console.log(`Transformed by: ${fn.name}`);
+// }
+
+// transfomer('JavaScript is the Best!', oneWord);
+// transfomer('JavaScript is the Best!', upperFirstWord);
+
+
+// const high5 = function () {
+//   console.log('👋');
+// }
+
+// document.body.addEventListener('click', high5);
+
+
+// const nameFixer = function (name, surname) {
+//   name = name.slice(0, 1).toUpperCase() + name.slice(1).toLowerCase();
+//   surname = surname.slice(0, 1).toUpperCase() + surname.slice(1).toLowerCase();
+
+//   return name + ' ' + surname
+// }
+
+// console.log(nameFixer('sAuLius', 'grAzys'));
+
+// const corectFullName = function (name, suname, fn) {
+//   console.log(`Dear,  ${fn(name, suname)}, welcome to our team! R U ${fn(suname, name)} arn't you?`);
+// }
+
+
+// corectFullName('SAuliuS', 'kalVAsciKautis', nameFixer);
+
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   }
+// }
+
+// const greeterLabas = greet('Labas');
+// greeterLabas('Saulius');
+// greeterLabas('Tauras');
+
+
+// const greeterSveikas = greet('Sveikas');
+// greeterSveikas('Marija');
+// greeterSveikas('Jokubas');
+
+// const greet1 = greeting => name => {
+//   return `Arrow: ${greeting} ${name}`;
+// }
+
+// const greeter = greet1('Labas');
+// console.log(greeter('Saulius'));
+
+
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(`${name} booked a seat at ${this.airline} flight ${this.iataCode}${flightNum} `);
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name })
+//   }
+// }
+
+
+
+// lufthansa.book(239, 'Saulius Grazys');
+// lufthansa.book(793, 'Marija Grazys');
+// console.log(lufthansa.bookings);
+
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// }
+
+// const book = lufthansa.book;
+
+// // book(23, 'Tauras Grazys')
+// book.call(eurowings, 979, 'Tauras Grazys');
+// console.log(eurowings);
+
+// book.call(lufthansa, 444, 'All Paccino');
+// console.log(lufthansa);
+
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: []
+// }
+
+// book.call(swiss, 686, 'Russel Crowe');
+// console.log(swiss);
+
+
+// const flightDate = [545, 'Sandra Bullock']
+
+// book.apply(swiss, flightDate);
+// book.call(swiss, ...flightDate);
+// console.log(swiss);
+
+// const lithuania = {
+//   airline: 'Lithuania Air Lines',
+//   iataCode: 'LAL',
+//   bookings: [],
+// }
+
+// const bookLAL = book.bind(lithuania);
+// const bookEW = book.bind(eurowings);
+// const bookLX = book.bind(swiss);
+// const bookLH = book.bind(lufthansa);
+
+// bookLAL(1321, 'Nick Cage');
+
+// const bookLALnr = book.bind(lithuania, 777);
+// bookLALnr('Leo Dica');
+// bookLALnr('Salma Hayke');
+
+// bookLH(888, 'Denzel Washington');
+// bookLX(555, 'Clint Eastwood')
+// bookEW(777, 'Bruce Lee')
+
+// console.log(lithuania);
+
+
+// const bookEWnr = book.bind(eurowings, 696);
+// bookEWnr('Angelina Jolie')
+
+// const bookLHnr = book.bind(lufthansa, 1212);
+// bookLHnr('Meryl Strip');
+// bookLHnr('Will Smith');
+
+
+// // With event listeners
+// lufthansa.plane = 300;
+// lithuania.plane = 10;
+
+// const buyPlane = function () {
+//   console.log(this);
+//   this.plane++
+//   console.log(this.plane);
+
+// }
+
+// const buyPlaneDOM = document.querySelector('.buy')
+// buyPlaneDOM.addEventListener('click', buyPlane.bind(lufthansa))
+// buyPlaneDOM.addEventListener('click', buyPlane.bind(lithuania))
+
+
+// // Partial pplication
+// const addTax = (rate, value) => {
+//   return value + value * rate / 100
+// }
+// console.log(addTax(10, 200));
+
+// const addVAT = addTax.bind(null, 21);
+// // addVAT = value => value + value * 21
+// console.log(addVAT(100));
+// console.log(addVAT(300));
+
+// const pridetiMokescius = function (mokestis) {
+//   return function (suma) {
+//     return suma + suma * mokestis / 100
+//   }
+// }
+
+// const pridetiPVM = pridetiMokescius(21);
+// console.log(pridetiPVM(100));
+// console.log(pridetiPVM(300));

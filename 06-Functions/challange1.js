@@ -35,21 +35,6 @@ GOOD LUCK 😀
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
-  answers: new Array(4).fill(0)
+  answers: new Array(4).fill(0),
 
 }
-
-poll.registerNewAnswer = function () {
-
-  const clarificationMsg = '(Write option number)'
-  const optionsText = this.options.join('\n');
-  const asnwer = prompt(`${this.question}\n${optionsText}\n${clarificationMsg} `)
-
-}
-
-
-
-poll.registerNewAnswer();
-console.log(poll.answers);
-
-
