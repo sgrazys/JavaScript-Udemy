@@ -500,3 +500,26 @@
 // const pridetiPVM = pridetiMokescius(21);
 // console.log(pridetiPVM(100));
 // console.log(pridetiPVM(300));
+
+
+///////////////////////////////////////
+// IMMEDIATLY INVOKED FUNCTION EXPRESSIONS (IIFE)
+
+// Kai norime kad funkcija pasileistu tik VIENA karta. Tokia funkcija pasileidus pirma karta 'pradingsta'
+
+(function () {
+  console.log('Pasirodis tik karta');
+  const isPrivate = 23
+})();
+
+// console.log(isPrivate);
+
+(() => console.log('Ir sis pasirodys tik karta'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 11;
+}
+
+// console.log(isPrivate);
+console.log(notPrivate);
