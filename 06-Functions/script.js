@@ -507,19 +507,83 @@
 
 // Kai norime kad funkcija pasileistu tik VIENA karta. Tokia funkcija pasileidus pirma karta 'pradingsta'
 
-(function () {
-  console.log('Pasirodis tik karta');
-  const isPrivate = 23
-})();
+// (function () {
+//   console.log('Pasirodis tik karta');
+//   const isPrivate = 23
+// })();
 
-// console.log(isPrivate);
+// // console.log(isPrivate);
 
-(() => console.log('Ir sis pasirodys tik karta'))();
+// (() => console.log('Ir sis pasirodys tik karta'))();
 
-{
-  const isPrivate = 23;
-  var notPrivate = 11;
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 11;
+// }
+
+// // console.log(isPrivate);
+// console.log(notPrivate);
+
+/////////////////////////////////
+// CLOSURES
+
+
+// const secureBooking = function () {
+//   let passengerCount = 0
+
+//   return function () {
+//     passengerCount++
+//     console.log(`Passenger count: ${passengerCount}`);
+//   }
+// }
+
+// const booker = secureBooking();
+
+// booker();
+// booker();
+// booker();
+
+// console.dir(booker)
+
+/////////////// SOME CLOSURE EXAMPLES:
+// EXAMPLE 1
+
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  }
 }
 
-// console.log(isPrivate);
-console.log(notPrivate);
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  }
+}
+
+g();
+f();
+console.dir(f);
+// Re-assign f function
+h();
+f();
+console.dir(f);
+
+// EXAMPLE 2
+const boardPassenger = function (n, wait) {
+  const perGroup = n / 3
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passsengers`);
+  }, wait * 1000)
+
+
+  console.log(`Will start boarding in ${wait} seconds`);
+}
+
+const perGroup = 1000;
+boardPassenger(180, 3)
