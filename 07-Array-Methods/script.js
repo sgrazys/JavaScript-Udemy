@@ -155,20 +155,40 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 
 
-// /////////////////////////////
-// // FILTER method
+// // /////////////////////////////
+// // // FILTER method
+
+// console.log(movements);
+
+// const deposits = movements.filter(e => e > 0);
+// console.log(deposits);
+
+// const depositFor = []
+// for (const mov of movements) {
+//   if (mov > 0) depositFor.push(mov)
+// }
+
+// console.log(depositFor);
+
+// const withdrawals = movements.filter(e => e < 0);
+// console.log(withdrawals);
+
+
+
+
+// // /////////////////////////////
+// // // REDUCE method
+
 
 console.log(movements);
 
-const deposits = movements.filter(e => e > 0);
-console.log(deposits);
+// ccumulator (t) is like a snowball 
+const balance = movements.reduce((t, v) => t + v, 0)
+console.log(balance);
 
-const depositFor = []
+let balanceFor = 0;
 for (const mov of movements) {
-  if (mov > 0) depositFor.push(mov)
+  balanceFor += mov
 }
 
-console.log(depositFor);
-
-const withdrawals = movements.filter(e => e < 0);
-console.log(withdrawals);
+console.log(balanceFor);
