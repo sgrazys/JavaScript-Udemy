@@ -179,17 +179,24 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // // /////////////////////////////
 // // // REDUCE method
 
+// console.log(movements);
+
+// // ccumulator (t) is like a snowball 
+// const balance = movements.reduce((t, v) => t + v, 0)
+// console.log(balance);
+
+// let balanceFor = 0;
+// for (const mov of movements) {
+//   balanceFor += mov
+// }
+
+// console.log(balanceFor);
+
+
+// /////////////////////////////
+// MAX VALUE FROM ARRAY
 
 console.log(movements);
 
-// ccumulator (t) is like a snowball 
-const balance = movements.reduce((t, v) => t + v, 0)
-console.log(balance);
-
-let balanceFor = 0;
-for (const mov of movements) {
-  balanceFor += mov
-}
-
-console.log(balanceFor);
-
+const maxNum = movements.reduce((acc, v) => acc > v ? acc : v);
+console.log(`Max value is: ${maxNum}`);
