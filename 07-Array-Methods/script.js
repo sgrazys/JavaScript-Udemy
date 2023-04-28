@@ -192,3 +192,4 @@ for (const mov of movements) {
 }
 
 console.log(balanceFor);
+
