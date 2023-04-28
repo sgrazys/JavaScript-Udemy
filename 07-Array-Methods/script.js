@@ -113,20 +113,45 @@
 ////////////////
 // FOR- EACH on MAPS
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-})
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// })
 
-//SET
-const uniqueItems = new Set(['USD', 'GBP', 'EUR', 'USD', 'EUR', 'EUR']);
-console.log(uniqueItems);
+// //SET
+// const uniqueItems = new Set(['USD', 'GBP', 'EUR', 'USD', 'EUR', 'EUR']);
+// console.log(uniqueItems);
 
-uniqueItems.forEach(function (v, _, s) {
-  console.log(`${v}: ${v}`);
-})
+// uniqueItems.forEach(function (v, _, s) {
+//   console.log(`${v}: ${v}`);
+// })
+
+
+/////////////////////////////
+// MAP method
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1
+const movementsUSD = movements.map(e => e * eurToUsd)
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementsUsd2 = []
+for (const mov of movements) {
+  movementsUsd2.push(mov * eurToUsd)
+}
+console.log(movementsUsd2);
+
+const movementsDescp = movements.map((e, i) => `Movement ${i + 1}: You ${e > 0 ? 'deposited ' : 'withdrew'} ${Math.abs(e)} `);
+
+console.log(movementsDescp);
+
+
+
