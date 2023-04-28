@@ -6,7 +6,7 @@
 
 
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -132,26 +132,43 @@
 // })
 
 
-/////////////////////////////
-// MAP method
+// /////////////////////////////
+// // MAP method
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const eurToUsd = 1.1
-const movementsUSD = movements.map(e => e * eurToUsd)
+// const eurToUsd = 1.1
+// const movementsUSD = movements.map(e => e * eurToUsd)
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// const movementsUsd2 = []
+// for (const mov of movements) {
+//   movementsUsd2.push(mov * eurToUsd)
+// }
+// console.log(movementsUsd2);
+
+// const movementsDescp = movements.map((e, i) => `Movement ${i + 1}: You ${e > 0 ? 'deposited ' : 'withdrew'} ${Math.abs(e)} `);
+
+// console.log(movementsDescp);
+
+
+
+// /////////////////////////////
+// // FILTER method
 
 console.log(movements);
-console.log(movementsUSD);
 
-const movementsUsd2 = []
+const deposits = movements.filter(e => e > 0);
+console.log(deposits);
+
+const depositFor = []
 for (const mov of movements) {
-  movementsUsd2.push(mov * eurToUsd)
+  if (mov > 0) depositFor.push(mov)
 }
-console.log(movementsUsd2);
 
-const movementsDescp = movements.map((e, i) => `Movement ${i + 1}: You ${e > 0 ? 'deposited ' : 'withdrew'} ${Math.abs(e)} `);
+console.log(depositFor);
 
-console.log(movementsDescp);
-
-
-
+const withdrawals = movements.filter(e => e < 0);
+console.log(withdrawals);
