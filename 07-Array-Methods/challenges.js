@@ -73,8 +73,6 @@ const calcAverageHumanAge = function (ages) {
   // const averageHumanAge = yearsUnder18.reduce((acc, v) => acc + v, 0) / yearsUnder18.length
   const averageHumanAge = yearsUnder18.reduce((acc, v, _, arr) => acc + v / arr.length, 0)
 
-  // 
-
   return averageHumanAge
 }
 
