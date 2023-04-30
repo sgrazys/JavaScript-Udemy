@@ -193,10 +193,31 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(balanceFor);
 
 
-// /////////////////////////////
-// MAX VALUE FROM ARRAY
+// // /////////////////////////////
+// // MAX VALUE FROM ARRAY
+
+// console.log(movements);
+
+// const maxNum = movements.reduce((acc, v) => acc > v ? acc : v);
+// console.log(`Max value is: ${maxNum}`);
+
+// // /////////////////////////////
+// // CHAINING METHODS
 
 console.log(movements);
 
-const maxNum = movements.reduce((acc, v) => acc > v ? acc : v);
-console.log(`Max value is: ${maxNum}`);
+const eurToUsd = 1.1
+
+//PIPELINE
+const totalDepositsInUSD = movements
+  .filter(v => v > 0)
+  .map((v, i, arr) => {
+    // console.log(arr);
+    return v * eurToUsd
+  })
+  // .map(v => v * eurToUsd)
+  .reduce((acc, v) => acc + v, 0);
+
+console.log(totalDepositsInUSD);
+
+
