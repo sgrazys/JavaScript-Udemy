@@ -252,19 +252,30 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // // /////////////////////////////
 // // FIND METHOD - Grazina pirma masyvo elementa, kuris atitinka salyga callbacke.
 
-const firstWithdrawl = movements.find(a => a < 0);
-console.log(movements);
-console.log(firstWithdrawl);
+// const firstWithdrawl = movements.find(a => a < 0);
+// console.log(movements);
+// console.log(firstWithdrawl);
 
 
-console.log(accounts);
-// console.log(accounts.find(acc => acc.owner === 'Jessica Davis'));
+// console.log(accounts);
+// // console.log(accounts.find(acc => acc.owner === 'Jessica Davis'));
 
-// Usimg For-of loop
+// // Usimg For-of loop
 
-for (const acc of accounts) {
-  if (acc.owner === 'Jessica Davis') {
-    console.log(acc);
-  }
-}
+// for (const acc of accounts) {
+//   if (acc.owner === 'Jessica Davis') {
+//     console.log(acc);
+//   }
+// }
+
+
+// // /////////////////////////////
+// // FINDINDEX METHOD'as - Grazina masyvo elementa indexa (pirma,), kuris atitinka salyga callbacke.
+
+const currentAcc = accounts.find(acc => acc.pin === 4444);
+console.log(currentAcc);
+
+
+const index = accounts.findIndex(acc => acc.pin === currentAcc.pin);
+console.log(index);
 
