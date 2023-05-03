@@ -325,29 +325,34 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movsSum2);
 
 
-// PROGRAMATIC CREATING NEW ARRAYS AND FILL THEM
+// // PROGRAMATIC CREATING NEW ARRAYS AND FILL THEM
 
-const arr = [1, 2, 3, 4, 5, 6, 7];
-console.log(new Array(1, 2, 3, 4, 5, 6, 7, 8));
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7, 8));
 
-// Empty array + fill method
-const x = new Array(7);
-console.log(x);
-// console.log(x.map(() => 1));
+// // Empty array + fill method
+// const x = new Array(7);
+// console.log(x);
+// // console.log(x.map(() => 1));
 
-x.fill(1);
-x.fill(2, 3, 5)
-console.log(x);
+// x.fill(1);
+// x.fill(2, 3, 5)
+// console.log(x);
 
-arr.fill(23, 2, 6);
-console.log(arr);
+// arr.fill(23, 2, 6);
+// console.log(arr);
 
-// Array.from
-const y = Array.from({ length: 7 }, () => 1);
-console.log(y);
+// // Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
 
-const z = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(z);
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z);
+
+////////////CHALLENGE
+// Create arry with 100 random dice rolls
 
 
+const diceRollArr = Array.from({ length: 100 }, () => Math.trunc(Math.random() * 6 + 1));
 
+console.log(diceRollArr);
