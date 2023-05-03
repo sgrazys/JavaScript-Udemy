@@ -272,32 +272,54 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // // /////////////////////////////
 // // FINDINDEX METHOD'as - Grazina masyvo elementa indexa (pirma,), kuris atitinka salyga callbacke.
 
-const currentAcc = accounts.find(acc => acc.pin === 4444);
-console.log(currentAcc);
+// const currentAcc = accounts.find(acc => acc.pin === 4444);
+// console.log(currentAcc);
 
 
-const index = accounts.findIndex(acc => acc.pin === currentAcc.pin);
-console.log(index);
+// const index = accounts.findIndex(acc => acc.pin === currentAcc.pin);
+// console.log(index);
 
-// // /////////////////////////////
-// // SOME & EVERY
+// // // /////////////////////////////
+// // // SOME & EVERY
 
-console.log(movements);
-//EQUALITY
-console.log(movements.includes(-130));
+// console.log(movements);
+// //EQUALITY
+// console.log(movements.includes(-130));
 
-//SOME: SPECIFY CONDITION
-const anyDeposits = movements.some(mov => mov > 0);
-console.log(anyDeposits);
+// //SOME: SPECIFY CONDITION
+// const anyDeposits = movements.some(mov => mov > 0);
+// console.log(anyDeposits);
 
-//EVERY
-console.log(movements.every(mov => mov > 0));
-console.log(account4.movements.every(mov => mov > 0));
+// //EVERY
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
 
 
-// Separate callback
+// // Separate callback
 
-const deposit = mov => mov > 0
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// const deposit = mov => mov > 0
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
+
+//////////////////////////////
+////  FLAT and FLATMAP
+
+const arr = [[[1, 2], 3], 4, [[5, 6], 7]];
+
+console.log(arr.flat());
+console.log(arr);
+console.log(arr.flat(2));
+
+
+const movsSum = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, v) => acc + v, 0);
+
+console.log(movsSum);
+
+//FLAT MAP  - iskarto sumapina ir sufaltina. suflatinti GALI TIK VIENA LYGI., Jeigu yra daugiau lygiu, reikia naudoti flat.
+
+const movsSum2 = accounts.flatMap(acc => acc.movements).reduce((acc, v) => acc + v, 0);
+console.log(movsSum2);
