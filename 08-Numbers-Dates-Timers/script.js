@@ -81,42 +81,95 @@ const inputClosePin = document.querySelector('.form__input--pin');
 ///////////// CONVERTING AND CHECKING NUMBERS /////////////
 
 
-console.log(23 === 23.0);
-// Base 10 - 0 to 9. 1 
-// Binary 2 - 0 to 1
+// console.log(23 === 23.0);
+// // Base 10 - 0 to 9. 1 
+// // Binary 2 - 0 to 1
 
-console.log(0.1 + 0.2);
-
-
-console.log(Number('21'));
-console.log(+'21');
-
-// Parsing - is stringo istraukia skaiciu, jeigu jis/ jie  yra pirmieji simboliai stringe.
-console.log(Number.parseInt('30px', 10));
-console.log(Number.parseInt('30px'));
-console.log(Number.parseInt('e30px', 10));
-
-console.log(Number.parseInt(`  2.5rem  `));
-console.log(Number.parseFloat(`  2.5rem  `));
-
-// Check if value is NaN
-console.log(Number.isNaN(20));
-console.log(Number.isNaN('20'));
-console.log(Number.isNaN(+'20s'));
-console.log(Number.isNaN(20 / 0));
+// console.log(0.1 + 0.2);
 
 
-// isFinite - geriausias buda tikrinti ar value yra skaicius?
-console.log(Number.isFinite(23));
-console.log(Number.isFinite('23'));
-console.log(Number.isFinite(+'23d'));
-console.log(Number.isFinite(23 / 0));
-console.log(Number.isFinite(33, 5));
+// console.log(Number('21'));
+// console.log(+'21');
 
-// isIntiger - tikrina ar skacius yra sveikas
-console.log(Number.isInteger(23));
-console.log(Number.isInteger(23.0));
-console.log(Number.isInteger(23.5));
-console.log(Number.isInteger(23 / 0));
+// // Parsing - is stringo istraukia skaiciu, jeigu jis/ jie  yra pirmieji simboliai stringe.
+// console.log(Number.parseInt('30px', 10));
+// console.log(Number.parseInt('30px'));
+// console.log(Number.parseInt('e30px', 10));
 
-console.log(Number.isFinite(23.5));
+// console.log(Number.parseInt(`  2.5rem  `));
+// console.log(Number.parseFloat(`  2.5rem  `));
+
+// // Check if value is NaN
+// console.log(Number.isNaN(20));
+// console.log(Number.isNaN('20'));
+// console.log(Number.isNaN(+'20s'));
+// console.log(Number.isNaN(20 / 0));
+
+
+// // isFinite - geriausias buda tikrinti ar value yra skaicius?
+// console.log(Number.isFinite(23));
+// console.log(Number.isFinite('23'));
+// console.log(Number.isFinite(+'23d'));
+// console.log(Number.isFinite(23 / 0));
+// console.log(Number.isFinite(33, 5));
+
+// // isIntiger - tikrina ar skacius yra sveikas
+// console.log(Number.isInteger(23));
+// console.log(Number.isInteger(23.0));
+// console.log(Number.isInteger(23.5));
+// console.log(Number.isInteger(23 / 0));
+
+
+///////////// MATH & ROUNDING /////////////
+
+// istaraukia sakni
+console.log(Math.sqrt(121));
+console.log(121 ** 0.5);
+console.log(121 ** (1 / 2));
+
+//istraukia kubine sakni
+console.log(8 ** (1 / 3));
+
+// grazina didziausia reiksme
+console.log(Math.max(89, 3.5, 23, 18));
+console.log(Math.max(1, 3.5, '23', 18));
+console.log(Math.max(1, 3.5, '23px', 18));
+
+// grazina maziausi reiksme
+console.log(Math.min(89, 3.5, 23, 18));
+
+// JS turi ir konstantu pv PY Math.PI
+console.log(Math.PI * Number.parseInt(`10px`) ** 2);
+
+// Random skaicius
+console.log(Math.trunc(Math.random() * 6) + 1);
+
+// funkcija generuojanti random skaicius nuo iki
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
+console.log(randomInt(10, 20));
+
+
+
+// SVEIKUJU SKAICIU APVALINIMAS
+
+// Math.trunc - nuiima skaicius po kableleio ir grazina tik sveikaji skaiciu
+console.log(Math.trunc(-23.54));
+
+// Math.round() su apvalina iki artimiausio sveikojo skaiciaus
+console.log(Math.round(23.3));
+console.log(Math.round(23.9));
+
+// Math.ceil() - suapvalina iki artmiausio sveikojo skaiciaus i didesne puse
+console.log(Math.ceil(23.1));
+console.log(Math.ceil(23.9));
+
+
+// // Math.flooe() - suapvalina iki artmiausio sveikojo skaiciaus i mazaja puse
+console.log(Math.floor(23.3));
+console.log(Math.floor(23.9));
+
+
+// NESVEIKUJU SKAICIU APVALINIMAS
+console.log((2.7).toFixed());
+console.log((2.7).toFixed(3));
+console.log(+(2.34567).toFixed(2));
