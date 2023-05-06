@@ -122,54 +122,106 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 ///////////// MATH & ROUNDING /////////////
 
-// istaraukia sakni
-console.log(Math.sqrt(121));
-console.log(121 ** 0.5);
-console.log(121 ** (1 / 2));
+// // istaraukia sakni
+// console.log(Math.sqrt(121));
+// console.log(121 ** 0.5);
+// console.log(121 ** (1 / 2));
 
-//istraukia kubine sakni
-console.log(8 ** (1 / 3));
+// //istraukia kubine sakni
+// console.log(8 ** (1 / 3));
 
-// grazina didziausia reiksme
-console.log(Math.max(89, 3.5, 23, 18));
-console.log(Math.max(1, 3.5, '23', 18));
-console.log(Math.max(1, 3.5, '23px', 18));
+// // grazina didziausia reiksme
+// console.log(Math.max(89, 3.5, 23, 18));
+// console.log(Math.max(1, 3.5, '23', 18));
+// console.log(Math.max(1, 3.5, '23px', 18));
 
-// grazina maziausi reiksme
-console.log(Math.min(89, 3.5, 23, 18));
+// // grazina maziausi reiksme
+// console.log(Math.min(89, 3.5, 23, 18));
 
-// JS turi ir konstantu pv PY Math.PI
-console.log(Math.PI * Number.parseInt(`10px`) ** 2);
+// // JS turi ir konstantu pv PY Math.PI
+// console.log(Math.PI * Number.parseInt(`10px`) ** 2);
 
-// Random skaicius
-console.log(Math.trunc(Math.random() * 6) + 1);
+// // Random skaicius
+// console.log(Math.trunc(Math.random() * 6) + 1);
 
-// funkcija generuojanti random skaicius nuo iki
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
-console.log(randomInt(10, 20));
-
-
-
-// SVEIKUJU SKAICIU APVALINIMAS
-
-// Math.trunc - nuiima skaicius po kableleio ir grazina tik sveikaji skaiciu
-console.log(Math.trunc(-23.54));
-
-// Math.round() su apvalina iki artimiausio sveikojo skaiciaus
-console.log(Math.round(23.3));
-console.log(Math.round(23.9));
-
-// Math.ceil() - suapvalina iki artmiausio sveikojo skaiciaus i didesne puse
-console.log(Math.ceil(23.1));
-console.log(Math.ceil(23.9));
+// // funkcija generuojanti random skaicius nuo iki
+// const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1) + min;
+// console.log(randomInt(10, 20));
 
 
-// // Math.flooe() - suapvalina iki artmiausio sveikojo skaiciaus i mazaja puse
-console.log(Math.floor(23.3));
-console.log(Math.floor(23.9));
+
+// // SVEIKUJU SKAICIU APVALINIMAS
+
+// // Math.trunc - nuiima skaicius po kableleio ir grazina tik sveikaji skaiciu
+// console.log(Math.trunc(-23.54));
+
+// // Math.round() su apvalina iki artimiausio sveikojo skaiciaus
+// console.log(Math.round(23.3));
+// console.log(Math.round(23.9));
+
+// // Math.ceil() - suapvalina iki artmiausio sveikojo skaiciaus i didesne puse
+// console.log(Math.ceil(23.1));
+// console.log(Math.ceil(23.9));
 
 
-// NESVEIKUJU SKAICIU APVALINIMAS
-console.log((2.7).toFixed());
-console.log((2.7).toFixed(3));
-console.log(+(2.34567).toFixed(2));
+// // // Math.flooe() - suapvalina iki artmiausio sveikojo skaiciaus i mazaja puse
+// console.log(Math.floor(23.3));
+// console.log(Math.floor(23.9));
+
+
+// // NESVEIKUJU SKAICIU APVALINIMAS
+// console.log((2.7).toFixed());
+// console.log((2.7).toFixed(3));
+// console.log(+(2.34567).toFixed(2));
+
+
+///////////// CREATING DATES /////////////
+
+// //Create a date
+// const now = new Date();
+// console.log(now);
+
+// console.log(new Date('May 06 2023 15:36:22'));
+// console.log(new Date('1986 October 15'));
+// console.log(new Date(account1.movementsDates[0]));
+
+// console.log(new Date(1986, 9, 15, 8, 50, 13));
+// console.log(new Date(1986, 10, 31));
+// console.log(new Date(1986, 10, 33));
+
+// console.log(new Date(0));
+// console.log(new Date(54 * 365 * 24 * 60 * 60 * 1000));
+// console.log(new Date(259200000));
+
+
+// Working with dates
+
+const future = new Date(2037, 9, 15, 8, 50);
+console.log(future);
+
+// Gauti metus
+console.log(future.getFullYear());
+
+// Gauti menesi
+console.log(future.getMonth());
+// Gauti diena
+console.log(future.getDate());
+// Gauti valandas
+console.log(future.getHours());
+// Gauti minutes
+console.log(future.getMinutes());
+
+// gauti savaites diena
+console.log(future.getDay()); // Sekmadienis yra 0; Pirmadienis - 1 , Antradienis - 2 ......
+
+// Gauti graziai suformatuota datos stringa
+console.log(future.toISOString());
+
+// Gauti time stampa  - milisekundemis, nuo UnixTime
+console.log(future.getTime());
+
+// Gauti dabartinio laiko time stampa
+console.log(Date.now());
+
+future.setFullYear(2023);
+console.log(future);
