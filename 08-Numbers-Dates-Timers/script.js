@@ -196,32 +196,45 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // Working with dates
 
-const future = new Date(2037, 9, 15, 8, 50);
-console.log(future);
+// const future = new Date(2037, 9, 15, 8, 50);
+// console.log(future);
 
-// Gauti metus
-console.log(future.getFullYear());
+// // Gauti metus
+// console.log(future.getFullYear());
 
-// Gauti menesi
-console.log(future.getMonth());
-// Gauti diena
-console.log(future.getDate());
-// Gauti valandas
-console.log(future.getHours());
-// Gauti minutes
-console.log(future.getMinutes());
+// // Gauti menesi
+// console.log(future.getMonth());
+// // Gauti diena
+// console.log(future.getDate());
+// // Gauti valandas
+// console.log(future.getHours());
+// // Gauti minutes
+// console.log(future.getMinutes());
 
-// gauti savaites diena
-console.log(future.getDay()); // Sekmadienis yra 0; Pirmadienis - 1 , Antradienis - 2 ......
+// // gauti savaites diena
+// console.log(future.getDay()); // Sekmadienis yra 0; Pirmadienis - 1 , Antradienis - 2 ......
 
-// Gauti graziai suformatuota datos stringa
-console.log(future.toISOString());
+// // Gauti graziai suformatuota datos stringa
+// console.log(future.toISOString());
 
-// Gauti time stampa  - milisekundemis, nuo UnixTime
-console.log(future.getTime());
+// // Gauti time stampa  - milisekundemis, nuo UnixTime
+// console.log(future.getTime());
 
-// Gauti dabartinio laiko time stampa
-console.log(Date.now());
+// // Gauti dabartinio laiko time stampa
+// console.log(Date.now());
 
-future.setFullYear(2023);
-console.log(future);
+// future.setFullYear(2023);
+// console.log(future);
+
+
+
+/////////// Operations  with dates ////////
+
+const future = new Date(2037, 10, 19, 15, 23);
+// console.log(+future);
+
+const calcDaysPassed = (date1, date2) => Math.abs((date2 - date1)) / (1000 * 60 * 60 * 24);
+
+const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14, 10, 8));
+console.log(days1);
+
