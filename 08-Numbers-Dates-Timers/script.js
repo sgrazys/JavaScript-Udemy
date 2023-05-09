@@ -230,11 +230,42 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////// Operations  with dates ////////
 
-const future = new Date(2037, 10, 19, 15, 23);
-// console.log(+future);
+// const future = new Date(2037, 10, 19, 15, 23);
+// // console.log(+future);
 
-const calcDaysPassed = (date1, date2) => Math.abs((date2 - date1)) / (1000 * 60 * 60 * 24);
+// const calcDaysPassed = (date1, date2) => Math.abs((date2 - date1)) / (1000 * 60 * 60 * 24);
 
-const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14, 10, 8));
-console.log(days1);
+// const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14, 10, 8));
+// console.log(days1);
 
+// function partlist(arr) {
+//   return arr.map((_, i) => {
+
+//     console.log([arr.slice(0, i + 1).join(' '), arr.slice(i + 1).join(' ')]);
+
+//     return [arr.slice(0, i + 1).join(' '), arr.slice(i + 1).join(' ')]
+//   }).splice(0, arr.length - 1);
+
+// }
+
+// console.log(partlist(["az", "toto", "picaro", "zone", "kiwi"]));
+
+// slice('\n')
+
+
+
+/////////// Internationalizing numbers ////////
+
+const num = 234124785.67
+
+const options = {
+  style: 'currency',
+  unit: 'celsius',
+  currency: 'EUR',
+  // useGrouping: false
+}
+
+console.log('US:', new Intl.NumberFormat('en-US', options).format(num));
+console.log('DE:', new Intl.NumberFormat('de-DE', options).format(num));
+console.log('LT:', new Intl.NumberFormat('lt-LT', options).format(num));
+console.log(navigator.language, Intl.NumberFormat(navigator.language, options).format(num));
