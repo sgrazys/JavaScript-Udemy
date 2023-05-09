@@ -288,5 +288,5 @@ if (ingridients.includes('grybais')) clearTimeout(pica)
 
 setInterval(() => {
   const now = new Date();
-  console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
-// }, 1000);
+  // console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
+}, 1000);
