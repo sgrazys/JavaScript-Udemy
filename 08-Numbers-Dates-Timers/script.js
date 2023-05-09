@@ -254,18 +254,39 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 
-/////////// Internationalizing numbers ////////
+// /////////// Internationalizing numbers ////////
 
-const num = 234124785.67
+// const num = 234124785.67
 
-const options = {
-  style: 'currency',
-  unit: 'celsius',
-  currency: 'EUR',
-  // useGrouping: false
-}
+// const options = {
+//   style: 'currency',
+//   unit: 'celsius',
+//   currency: 'EUR',
+//   // useGrouping: false
+// }
 
-console.log('US:', new Intl.NumberFormat('en-US', options).format(num));
-console.log('DE:', new Intl.NumberFormat('de-DE', options).format(num));
-console.log('LT:', new Intl.NumberFormat('lt-LT', options).format(num));
-console.log(navigator.language, Intl.NumberFormat(navigator.language, options).format(num));
+// console.log('US:', new Intl.NumberFormat('en-US', options).format(num));
+// console.log('DE:', new Intl.NumberFormat('de-DE', options).format(num));
+// console.log('LT:', new Intl.NumberFormat('lt-LT', options).format(num));
+// console.log(navigator.language, Intl.NumberFormat(navigator.language, options).format(num));
+
+
+// /////////// TIMERS: SETTIMEOUT & SETINTERVAL ////////
+
+// //SETTIMEOUT
+
+const ingridients = ['spinatais', 'pomidorais', 'grybais']
+
+const pica = setTimeout((ing1, ing2, ing3) => console.log(`Atvyko jusu pica su ${ing1}, ${ing2} ir ${ing3}! :-)`), 3000, ...ingridients)
+
+console.log('Laukiama...');
+
+if (ingridients.includes('grybais')) clearTimeout(pica)
+
+
+// //SETINTERVAL
+
+setInterval(() => {
+  const now = new Date();
+  console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
+// }, 1000);
