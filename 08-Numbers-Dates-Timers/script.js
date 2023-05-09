@@ -273,7 +273,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // /////////// TIMERS: SETTIMEOUT & SETINTERVAL ////////
 
-// //SETTIMEOUT
+// //SETTIMEOUT - ivykdoma callback funcija, praejus nurodytam laikui.
 
 const ingridients = ['spinatais', 'pomidorais', 'grybais']
 
@@ -284,7 +284,7 @@ console.log('Laukiama...');
 if (ingridients.includes('grybais')) clearTimeout(pica)
 
 
-// //SETINTERVAL
+// //SETINTERVAL - vykdoma callback funkcija kaskarta po nurodyto laiko. pvz kas sekunde ar kas 5 minutes
 
 setInterval(() => {
   const now = new Date();
