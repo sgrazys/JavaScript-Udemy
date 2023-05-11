@@ -125,3 +125,32 @@ logo.classList.add('c', 'j'); // pridedam klase
 logo.classList.remove('c', 'j'); // istrinam klase
 logo.classList.toggle('c'); // jeig turi nurodytaklase istrinam, jeigu neturi prideda
 console.log(logo.classList.contains('j')); // not includes like in arrays
+
+
+
+///////////////////////////////////////
+////TYPE OF EVENTS AND EVENT HANDLERS
+
+// //Mouse enter event
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading :D')
+
+}
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', alertH1);
+}, 5000)
+
+
+// OLD DAYS :) 
+
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: Great! You are reading the heading :D')
+// }
+
+// // Remove event
