@@ -87,9 +87,11 @@ message.style.width = '120%';
 console.log(message.style.height);
 console.log(message.style.backgroundColor);
 console.log(message.style.color);
+console.log(message.style.width);
 
 console.log(getComputedStyle(message).color);
 console.log(getComputedStyle(message).height);
+console.log(getComputedStyle(message).width);
 
 message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
@@ -119,9 +121,7 @@ console.log(link.getAttribute('href'));
 console.log(logo.dataset.versionNumber);
 
 // Classes
-logo.classList.add('c', 'j');
-logo.classList.remove('c', 'j');
-logo.classList.toggle('c', 'j');
-logo.classList.contains('c', 'j'); // not includes like in arrays
-
-logo
+logo.classList.add('c', 'j'); // pridedam klase
+logo.classList.remove('c', 'j'); // istrinam klase
+logo.classList.toggle('c'); // jeig turi nurodytaklase istrinam, jeigu neturi prideda
+console.log(logo.classList.contains('j')); // not includes like in arrays
