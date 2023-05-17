@@ -219,3 +219,14 @@ console.log(h1.parentElement.children);
     el.style.transform = 'scale(0.5)';
   }
 });
+
+const orderedCount = function (text) {
+  // Implement me!
+
+
+  let uniqueChars = [...new Set(text)];
+
+  return uniqueChars.map((cur, i) => cur === text[i] ? [cur, 1 + 1] : [cur, 1])
+}
+
+console.log(orderedCount('abracadabra'));
