@@ -191,7 +191,31 @@ class PersonCl {
   }
 }
 
-const tauras = new PersonCl('Tauras', 2021);
-// tauras.hey();
+// const tauras = new PersonCl('Tauras', 2021);
+// // tauras.hey();
 
-PersonCl.hey();
+// PersonCl.hey();
+
+//////////////////
+// //OBJECT.CREATE
+
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const russel = Object.create(PersonProto);
+console.log(russel);
+russel.name = 'Russel';
+russel.birthYear = 1964;
+russel.calcAge();
+
+const sandra = Object.create(PersonProto);
+sandra.init('Sandra', 1988);
+sandra.calcAge();
