@@ -50,3 +50,26 @@ console.log(marija.species, tauras.species);
 
 console.log(marija.hasOwnProperty('firstName'));
 console.log(marija.hasOwnProperty('species'));
+
+// // Prototypal inheritance  on built-in objects
+console.log(marija.__proto__);
+// Object.prototype(top of prototype chain)
+console.log(marija.__proto__.__proto__);
+console.log(marija.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 4, 5, 1, 4, 8, 3, 8, 3, 4, 5]; // new Array === []
+console.log(arr.__proto__ === Array.prototype);
+console.log(Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)]
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1)
