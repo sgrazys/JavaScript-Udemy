@@ -2,9 +2,9 @@
 //////////////////
 // //CONSTRUCTOR FUNCTIONS AND THE NEW OPERATOR
 
-// const Person = function (firstName, birthYear) {
+// const Person = function (fullname, birthYear) {
 //   // Instance properties
-//   this.firstName = firstName;
+//   this.fullname = fullname;
 //   this.birthYear = birthYear;
 
 //   // NEVER TO DO THIS
@@ -47,7 +47,7 @@
 // console.log(marija, tauras);
 // console.log(marija.species, tauras.species);
 
-// console.log(marija.hasOwnProperty('firstName'));
+// console.log(marija.hasOwnProperty('fullname'));
 // console.log(marija.hasOwnProperty('species'));
 
 // // // Prototypal inheritance  on built-in objects
@@ -81,8 +81,8 @@
 
 // class declaration
 class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullname, birthYear) {
+    this.fullname = fullname;
     this.birthYear = birthYear;
   }
 
@@ -92,20 +92,58 @@ class PersonCl {
   }
 
   greet() {
-    console.log(`Hey, ${this.firstName}`);
+    console.log(`Hey, ${this.fullname}`);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  // Set a property that already egsits
+  set fullname(name) {
+    if (name.includes(' ')) {
+      this._fullname = name;
+    } else alert(`${name} is not full name!`);
+  }
+
+  get fullname() {
+    return this._fullname;
   }
 }
 
-const jenifer = new PersonCl('Jenifer', 1979);
+const jenifer = new PersonCl('Jenifer Lopez', 1979);
 console.log(jenifer);
 jenifer.calcAge();
+console.log(jenifer.age);
 
 // PersonCl.prototype.greet = function () {
-//   console.log(`Hey, ${this.firstName}`);
+//   console.log(`Hey, ${this.fullname}`);
 // };
 
 jenifer.greet();
 
-// 1. Classes are NOT hoisted
-// 2. Class are first-class citizens
-// 3. Classes are executed in strict mode
+const marlon = new PersonCl('Marlon Brando', 1921);
+
+// // 1. Classes are NOT hoisted
+// // 2. Class are first-class citizens
+// // 3. Classes are executed in strict mode
+
+//////////////////
+// //SETTERS AND GETTERS
+
+const account = {
+  owner: 'Saulius',
+  movements: [200, 450, 50, 640, 120],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(newMov) {
+    this.movements.push(newMov);
+  },
+};
+
+console.log(account.latest);
+account.latest = 999;
+console.log(account.movements);
