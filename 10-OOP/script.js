@@ -93,7 +93,7 @@
 //   }
 
 //   greet() {
-//     console.log(`Hey, ${this.fullname}`);
+//     console.log(Hey, ${this.fullname});
 //   }
 
 //   get age() {
@@ -104,7 +104,7 @@
 //   set fullname(name) {
 //     if (name.includes(' ')) {
 //       this._fullname = name;
-//     } else alert(`${name} is not full name!`);
+//     } else alert(${name} is not full name!);
 //   }
 
 //   get fullname() {
@@ -118,7 +118,7 @@
 // console.log(jenifer.age);
 
 // // PersonCl.prototype.greet = function () {
-// //   console.log(`Hey, ${this.fullname}`);
+// //   console.log(Hey, ${this.fullname});
 // // };
 
 // jenifer.greet();
@@ -151,71 +151,102 @@
 
 // STATIC METHODS
 
-const Person = function (fullname, birthYear) {
-  //   // Instance properties
-  this.fullname = fullname;
+// const Person = function (fullname, birthYear) {
+//   //   // Instance properties
+//   this.fullname = fullname;
+//   this.birthYear = birthYear;
+// };
+
+// Person.hey = function () {
+//   console.log(Hey there 👋);
+// };
+
+// const marija = new Person('Marija', 1987);
+// Person.hey();
+// // marija.hey();
+
+// class PersonCl {
+//   constructor(fullname, birthYear) {
+//     this.fullname = fullname;
+//     this.birthYear = birthYear;
+//   }
+
+//   //Methods will be added to .prototype property
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   }
+
+//   greet() {
+//     console.log(Hey, ${this.fullname});
+//   }
+
+//   get age() {
+//     return 2023 - this.birthYear;
+//   }
+
+//   // Static Method - instance'ai nepasiekia. Pasiekia tik pati klase.
+//   static hey() {
+//     console.log(this);
+//     console.log(Hey there 👋);
+//   }
+// }
+
+// // const tauras = new PersonCl('Tauras', 2021);
+// // // tauras.hey();
+
+// // PersonCl.hey();
+
+// //////////////////
+// // //OBJECT.CREATE
+
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   },
+
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
+
+// const russel = Object.create(PersonProto);
+// console.log(russel);
+// russel.name = 'Russel';
+// russel.birthYear = 1964;
+// russel.calcAge();
+
+// const sandra = Object.create(PersonProto);
+// sandra.init('Sandra', 1988);
+// sandra.calcAge();
+
+// //////////////////
+// // INHERITANCE BETWEEN 'CLASSES': CONSTRUCTOR FUNCTIONS
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
   this.birthYear = birthYear;
 };
 
-Person.hey = function () {
-  console.log(`Hey there 👋`);
+Person.prototype.calcAge = function () {
+  console.log(2023 - this.birthYear);
 };
 
-const marija = new Person('Marija', 1987);
-Person.hey();
-// marija.hey();
-
-class PersonCl {
-  constructor(fullname, birthYear) {
-    this.fullname = fullname;
-    this.birthYear = birthYear;
-  }
-
-  //Methods will be added to .prototype property
-  calcAge() {
-    console.log(2023 - this.birthYear);
-  }
-
-  greet() {
-    console.log(`Hey, ${this.fullname}`);
-  }
-
-  get age() {
-    return 2023 - this.birthYear;
-  }
-
-  // Static Method - instance'ai nepasiekia. Pasiekia tik pati klase.
-  static hey() {
-    console.log(this);
-    console.log(`Hey there 👋`);
-  }
-}
-
-// const tauras = new PersonCl('Tauras', 2021);
-// // tauras.hey();
-
-// PersonCl.hey();
-
-//////////////////
-// //OBJECT.CREATE
-
-const PersonProto = {
-  calcAge() {
-    console.log(2023 - this.birthYear);
-  },
-
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
 };
 
-const russel = Object.create(PersonProto);
-console.log(russel);
-russel.name = 'Russel';
-russel.birthYear = 1964;
-russel.calcAge();
+// Linking prototypes
+Student.prototype = Object.create(Person.prototype);
 
-const sandra = Object.create(PersonProto);
-sandra.init('Sandra', 1988);
-sandra.calcAge();
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}.`);
+};
+const leo = new Student('Leo', 1998, 'Computer Science');
+
+leo.introduce();
+leo.calcAge();
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
