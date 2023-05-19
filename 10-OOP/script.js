@@ -320,28 +320,102 @@
 // //////////////////
 // // //  INHERITANCE BETWEEN 'CLASSES': OBJECT.CREATE()
 
-const PersonProto = {
-  calcAge() {
-    console.log(2023 - this.birthYear);
-  },
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   },
 
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
 
-const StudentProto = Object.create(PersonProto);
-StudentProto.init = function (firstName, birthYear, course) {
-  PersonProto.init.call(this, firstName, birthYear);
-  this.course = course;
-};
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
 
-StudentProto.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+// StudentProto.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// };
 
-const antonio = Object.create(StudentProto);
-antonio.init('Antonio', 1993, 'Crafting');
-antonio.introduce();
-antonio.calcAge();
+// const antonio = Object.create(StudentProto);
+// antonio.init('Antonio', 1993, 'Crafting');
+// antonio.introduce();
+// antonio.calcAge();
+
+/////////////////////
+// //  ANOTHER CLASS EXAMPLE
+
+// 1. Public fields
+// 2. Private fields
+// 3. Public methods
+// 4. Private methods
+
+class Account {
+  // 1. Public fields (instances)
+  locale = navigator.language;
+
+  // 2. Private fields (instances)
+  #movmovements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    //protected property
+    this.#pin = pin;
+    // this._movmovements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for openeing an account, ${owner}`);
+  }
+
+  // 3. Public methods
+
+  // Public interface
+  getMovement() {
+    return this.#movmovements;
+  }
+
+  deposit(val) {
+    this.#movmovements.push(val);
+  }
+
+  withdrawa(val) {
+    this.deposit(-val);
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan of ${val} is approved`);
+    }
+  }
+  static helper() {
+    console.log('Helper');
+  }
+  // 4. Private methods
+  #approveLoan(val) {
+    return true;
+  }
+}
+
+const acc1 = new Account('Tauras', 'EUR', 1111);
+
+// acc1._movmovements.push(500);
+// acc1._movmovements.push(-222);
+acc1.deposit(250);
+acc1.withdrawa(100);
+acc1.requestLoan(1000);
+console.log(acc1.getMovement());
+console.log(acc1);
+
+// console.log(acc1.#movements);
+// console.log(acc1.#pin);
+
+// console.log(acc1.#approveLoan(100));
+
+Account.helper();
