@@ -221,7 +221,7 @@
 // sandra.calcAge();
 
 // //////////////////
-// // INHERITANCE BETWEEN 'CLASSES': CONSTRUCTOR FUNCTIONS
+// // //  INHERITANCE BETWEEN 'CLASSES': CONSTRUCTOR FUNCTIONS
 
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
