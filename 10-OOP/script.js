@@ -254,65 +254,94 @@
 // //////////////////
 // // //  INHERITANCE BETWEEN 'CLASSES': E6 CLASSES
 
-class PersonCl {
-  constructor(fullname, birthYear) {
-    this.fullname = fullname;
-    this.birthYear = birthYear;
-  }
+// class PersonCl {
+//   constructor(fullname, birthYear) {
+//     this.fullname = fullname;
+//     this.birthYear = birthYear;
+//   }
 
-  //Methods will be added to .prototype property
+//   //Methods will be added to .prototype property
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   }
+
+//   greet() {
+//     console.log(`Hey, ${this.fullname}`);
+//   }
+
+//   get age() {
+//     return 2023 - this.birthYear;
+//   }
+
+//   // Set a property that already egsits
+//   set fullname(name) {
+//     if (name.includes(' ')) {
+//       this._fullname = name;
+//     } else alert(`${name} is not full name!`);
+//   }
+
+//   get fullname() {
+//     return this._fullname;
+//   }
+
+//   static hey() {
+//     console.log('Hey there 👋');
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor(fullname, birthYear, course) {
+//     // ALWAYS NEEDS TO HAPPEN FIRST!
+//     super(fullname, birthYear);
+//     this.course = course;
+//   }
+
+//   introduce() {
+//     console.log(`My name is ${this.fullname} and I study  ${this.course}`);
+//   }
+
+//   calcAge() {
+//     console.log(
+//       `I'm ${
+//         2023 - this.birthYear
+//       } years old, but as a student I feel more like ${
+//         2023 - this.birthYear - 30
+//       } 😆`
+//     );
+//   }
+// }
+
+// // const mario = new StudentCl('Mario Bros', 1973);
+// const mario = new StudentCl('Mario Bros', 1973, 'Game Development');
+// console.log(mario);
+// mario.introduce();
+// mario.calcAge();
+
+// //////////////////
+// // //  INHERITANCE BETWEEN 'CLASSES': OBJECT.CREATE()
+
+const PersonProto = {
   calcAge() {
     console.log(2023 - this.birthYear);
-  }
+  },
 
-  greet() {
-    console.log(`Hey, ${this.fullname}`);
-  }
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
 
-  get age() {
-    return 2023 - this.birthYear;
-  }
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
 
-  // Set a property that already egsits
-  set fullname(name) {
-    if (name.includes(' ')) {
-      this._fullname = name;
-    } else alert(`${name} is not full name!`);
-  }
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
 
-  get fullname() {
-    return this._fullname;
-  }
-
-  static hey() {
-    console.log('Hey there 👋');
-  }
-}
-
-class StudentCl extends PersonCl {
-  constructor(fullname, birthYear, course) {
-    // ALWAYS NEEDS TO HAPPEN FIRST!
-    super(fullname, birthYear);
-    this.course = course;
-  }
-
-  introduce() {
-    console.log(`My name is ${this.fullname} and I study  ${this.course}`);
-  }
-
-  calcAge() {
-    console.log(
-      `I'm ${
-        2023 - this.birthYear
-      } years old, but as a student I feel more like ${
-        2023 - this.birthYear - 30
-      } 😆`
-    );
-  }
-}
-
-// const mario = new StudentCl('Mario Bros', 1973);
-const mario = new StudentCl('Mario Bros', 1973, 'Game Development');
-console.log(mario);
-mario.introduce();
-mario.calcAge();
+const antonio = Object.create(StudentProto);
+antonio.init('Antonio', 1993, 'Crafting');
+antonio.introduce();
+antonio.calcAge();
