@@ -143,9 +143,23 @@ const renderCountry = function (data, className = '') {
 // console.log(request);
 
 const getCountryData = function (country) {
+	//Country 1
 	fetch(`https://restcountries.com/v2/name/${country}`)
 		.then((response) => response.json())
-		.then((data) => renderCountry(data[0]));
+		.then((data) => {
+			console.log(data);
+			renderCountry(data[0]);
+			const neigbour = data[0].borders?.[0];
+
+			if (!neigbour) return;
+
+			// Country 2
+			return fetch(`https://restcountries.com/v2/alpha/${neigbour}`)
+				.then((response) => response.json())
+				.then((data) => renderCountry(data, 'neighbour'));
+		});
 };
 
-getCountryData('lithuania');
+// getCountryData('lithuania');
+// getCountryData('germany');
+getCountryData('spain');
