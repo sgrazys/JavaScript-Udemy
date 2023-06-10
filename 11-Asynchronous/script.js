@@ -192,37 +192,119 @@ const getJSON = function (url, errMsg = 'Something went wrong.') {
 // 		});
 // };
 
-const getCountryData = function (country) {
-	getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
-		.then((data) => {
-			renderCountry(data[0]);
-			const neighbour = data[0]?.borders?.[1];
+// const getCountryData = function (country) {
+// 	getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
+// 		.then((data) => {
+// 			renderCountry(data[0]);
+// 			const neighbour = data[0]?.borders?.[1];
 
-			if (!neighbour) throw new Error('No neighbour found');
+// 			if (!neighbour) throw new Error('No neighbour found');
 
-			return getJSON(
-				`https://restcountries.com/v2/alpha/${neighbour}`,
-				'Country not found'
-			);
-		})
-		.then((response) => {
-			if (!response.ok)
-				throw new Error(`Country not found (${response.status})`);
+// 			return getJSON(
+// 				`https://restcountries.com/v2/alpha/${neighbour}`,
+// 				'Country not found'
+// 			);
+// 		})
+// 		.then((response) => {
+// 			if (!response.ok)
+// 				throw new Error(`Country not found (${response.status})`);
 
-			return response.json();
-		})
-		.then((data) => renderCountry(data, 'neighbour'))
-		.catch((err) => {
-			console.error(`${err}💥💥💥💥`);
-			renderErr(`Something went wrong 💥💥💥 ${err.message}. Try again.`);
-		})
-		.finally(() => {
-			countriesContainer.style.opacity = 1;
-		});
-};
+// 			return response.json();
+// 		})
+// 		.then((data) => renderCountry(data, 'neighbour'))
+// 		.catch((err) => {
+// 			console.error(`${err}💥💥💥💥`);
+// 			renderErr(`Something went wrong 💥💥💥 ${err.message}. Try again.`);
+// 		})
+// 		.finally(() => {
+// 			countriesContainer.style.opacity = 1;
+// 		});
+// };
 
-btn.addEventListener('click', function () {
-	getCountryData('lithuania');
+// btn.addEventListener('click', function () {
+// 	getCountryData('lithuania');
+// });
+
+// getCountryData('australia');
+
+///////////////////////
+// Event loop on practice
+
+// console.log('Test start');
+// setTimeout(() => console.log('0 sec timer'), 0);
+// Promise.resolve('Resolved promise 1').then((res) => console.log(res));
+
+// Promise.resolve('Resolved promise 2').then((res) => {
+// 	for (let i = 0; i < 1000000000; i++) {}
+// 	console.log(res);
+// });
+// console.log('Test end');
+
+///////////////////////
+// BUILDING A PROMISE
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+	console.log('Lottery is running...');
+	setTimeout(function () {
+		if (Math.random() >= 0.5) {
+			resolve('You WIN 💶');
+		} else {
+			reject(new Error('You lost...'));
+		}
+	}, 3000);
 });
 
-getCountryData('australia');
+lotteryPromise
+	.then((res) => console.log(res))
+	.catch((err) => console.error(err));
+
+// Promisifyin setTimout()
+const wait = function (seconds) {
+	return new Promise(function (resolve) {
+		setTimeout(resolve, seconds * 1000);
+	});
+};
+
+wait(1)
+	.then(() => {
+		console.log('1 second passed');
+		return wait(1);
+	})
+	.then(() => {
+		console.log('2 seconds passed');
+		return wait(1);
+	})
+	.then(() => {
+		console.log('3 seconds passed');
+		return wait(1);
+	})
+	.then(() => {
+		console.log('4 seconds passed');
+		return wait(1);
+	})
+	.then(() => {
+		console.log('5 seconds passed');
+		return wait(1);
+	});
+
+// setTimeout(() => {
+// 	console.log('1 second passed');
+// 	setTimeout(() => {
+// 		console.log('2 seconds passed');
+// 		setTimeout(() => {
+// 			console.log('3 second passed');
+// 			setTimeout(() => {
+// 				console.log('4 second passed');
+// 				setTimeout(() => {
+// 					console.log('5 second passed');
+// 					setTimeout(() => {
+// 						console.log('6 second passed');
+// 					}, 1000);
+// 				}, 1000);
+// 			}, 1000);
+// 		}, 1000);
+// 	}, 1000);
+// }, 1000);
+
+Promise.resolve('ABC').then((x) => console.log(x));
+Promise.reject(new Error('Klaida')).catch((y) => console.error(y.message));
