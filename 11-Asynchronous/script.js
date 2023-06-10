@@ -243,68 +243,124 @@ const getJSON = function (url, errMsg = 'Something went wrong.') {
 ///////////////////////
 // BUILDING A PROMISE
 
-const lotteryPromise = new Promise(function (resolve, reject) {
-	console.log('Lottery is running...');
-	setTimeout(function () {
-		if (Math.random() >= 0.5) {
-			resolve('You WIN 💶');
-		} else {
-			reject(new Error('You lost...'));
-		}
-	}, 3000);
-});
+// const lotteryPromise = new Promise(function (resolve, reject) {
+// 	console.log('Lottery is running...');
+// 	setTimeout(function () {
+// 		if (Math.random() >= 0.5) {
+// 			resolve('You WIN 💶');
+// 		} else {
+// 			reject(new Error('You lost...'));
+// 		}
+// 	}, 3000);
+// });
 
-lotteryPromise
-	.then((res) => console.log(res))
-	.catch((err) => console.error(err));
+// lotteryPromise
+// 	.then((res) => console.log(res))
+// 	.catch((err) => console.error(err));
 
-// Promisifyin setTimout()
+// // Promisifyin setTimout()
+// const wait = function (seconds) {
+// 	return new Promise(function (resolve) {
+// 		setTimeout(resolve, seconds * 1000);
+// 	});
+// };
+
+// wait(1)
+// 	.then(() => {
+// 		console.log('1 second passed');
+// 		return wait(1);
+// 	})
+// 	.then(() => {
+// 		console.log('2 seconds passed');
+// 		return wait(1);
+// 	})
+// 	.then(() => {
+// 		console.log('3 seconds passed');
+// 		return wait(1);
+// 	})
+// 	.then(() => {
+// 		console.log('4 seconds passed');
+// 		return wait(1);
+// 	})
+// 	.then(() => {
+// 		console.log('5 seconds passed');
+// 		return wait(1);
+// 	});
+
+// // setTimeout(() => {
+// // 	console.log('1 second passed');
+// // 	setTimeout(() => {
+// // 		console.log('2 seconds passed');
+// // 		setTimeout(() => {
+// // 			console.log('3 second passed');
+// // 			setTimeout(() => {
+// // 				console.log('4 second passed');
+// // 				setTimeout(() => {
+// // 					console.log('5 second passed');
+// // 					setTimeout(() => {
+// // 						console.log('6 second passed');
+// // 					}, 1000);
+// // 				}, 1000);
+// // 			}, 1000);
+// // 		}, 1000);
+// // 	}, 1000);
+// // }, 1000);
+
+// Promise.resolve('ABC').then((x) => console.log(x));
+// Promise.reject(new Error('Klaida')).catch((y) => console.error(y.message));
+
+// const getPosition = function () {
+// 	return new Promise(function (resolve, reject) {
+// 		// navigator.geolocation.getCurrentPosition(
+// 		// 	(position) => resolve(position),
+// 		// 	(err) => reject(err)
+// 		// );
+// 		navigator.geolocation.getCurrentPosition(resolve, reject);
+// 	});
+// };
+
+// getPosition().then((pos) => console.log(pos));
+
 const wait = function (seconds) {
 	return new Promise(function (resolve) {
 		setTimeout(resolve, seconds * 1000);
 	});
 };
 
-wait(1)
-	.then(() => {
-		console.log('1 second passed');
-		return wait(1);
-	})
-	.then(() => {
-		console.log('2 seconds passed');
-		return wait(1);
-	})
-	.then(() => {
-		console.log('3 seconds passed');
-		return wait(1);
-	})
-	.then(() => {
-		console.log('4 seconds passed');
-		return wait(1);
-	})
-	.then(() => {
-		console.log('5 seconds passed');
-		return wait(1);
+const imgContainer = document.querySelector('.images');
+
+const createImage = function (imgPath) {
+	return new Promise(function (resolve, reject) {
+		const img = document.createElement('img');
+		img.src = imgPath;
+
+		img.addEventListener('load', function () {
+			imgContainer.append(img);
+			resolve(img);
+		});
+		img.addEventListener('error', function () {
+			reject(new Error('Image not found'));
+		});
 	});
+};
 
-// setTimeout(() => {
-// 	console.log('1 second passed');
-// 	setTimeout(() => {
-// 		console.log('2 seconds passed');
-// 		setTimeout(() => {
-// 			console.log('3 second passed');
-// 			setTimeout(() => {
-// 				console.log('4 second passed');
-// 				setTimeout(() => {
-// 					console.log('5 second passed');
-// 					setTimeout(() => {
-// 						console.log('6 second passed');
-// 					}, 1000);
-// 				}, 1000);
-// 			}, 1000);
-// 		}, 1000);
-// 	}, 1000);
-// }, 1000);
-
-Promise.resolve('ABC').then((x) => console.log(x));
-Promise.reject(new Error('Klaida')).catch((y) => console.error(y.message));
+let currentImg;
+createImage('img/img-1.jpg')
+	.then((img) => {
+		currentImg = img;
+		console.log('Image 1 loaded');
+		return wait(2);
+	})
+	.then(() => {
+		currentImg.style.display = 'none';
+		return createImage('img/img-2.jpg');
+	})
+	.then((img) => {
+		currentImg = img;
+		console.log('Image 2 loaded');
+		return wait(2);
+	})
+	.then(() => {
+		currentImg.style.display = 'none';
+	})
+	.catch((err) => console.error(err));
