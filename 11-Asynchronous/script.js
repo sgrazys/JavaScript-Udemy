@@ -379,23 +379,69 @@ const getPosition = function () {
 // 	console.log(res)
 // );
 
+// const whereAmI = async function () {
+// 	//Geolocation
+// 	const pos = await getPosition();
+// 	const { latitude: lat, longitude: lng } = pos.coords;
+
+// 	// Reversed geocoding
+// 	const resGeo = await fetch(`http://geocode.xyz/${lat},${lng}?geoit=json`);
+// 	const dataGeo = await resGeo.json();
+// 	console.log(dataGeo);
+
+// 	// Country Data
+// 	const resp = await fetch(
+// 		`https://restcountries.com/v2/name/${dataGeo.country}`
+// 	);
+// 	const data = await resp.json();
+// 	renderCountry(data[0]);
+// };
+
+// whereAmI();
+// console.log('FIRST');
+
+///////////////////////////
+// ERROR HANDLING WITH TRY ...CATCH
+
+// try {
+// 	let y = 1;
+// 	const x = 2;
+// 	y = 3;
+// } catch (err) {
+// 	alert(err.message);
+// }
+
 const whereAmI = async function () {
-	//Geolocation
-	const pos = await getPosition();
-	const { latitude: lat, longitude: lng } = pos.coords;
+	try {
+		//Geolocation
+		const pos = await getPosition();
+		const { latitude: lat, longitude: lng } = pos.coords;
 
-	// Reversed geocoding
-	const resGeo = await fetch(`http://geocode.xyz/${lat},${lng}?geoit=json`);
-	const dataGeo = await resGeo.json();
-	console.log(dataGeo);
+		// Reversed geocoding
+		const resGeo = await fetch(
+			`http://geocode.xyz/${lat},${lng}?geoit=json`
+		);
 
-	// Country Data
-	const resp = await fetch(
-		`https://restcountries.com/v2/name/${dataGeo.country}`
-	);
-	const data = await resp.json();
-	renderCountry(data[0]);
+		if (!resGeo.ok) throw new Error(`Problem getting location`);
+
+		const dataGeo = await resGeo.json();
+
+		// Country Data
+		const resp = await fetch(
+			`https://restcountries.com/v2/name/${dataGeo.country}`
+		);
+		if (!resp.ok) throw new Error(`Problem getting country`);
+
+		const data = await resp.json();
+		renderCountry(data[0]);
+	} catch (err) {
+		console.error(`💥💥💥💥${err}`);
+		renderErr(`💥 ${err.message}`);
+	}
 };
 
 whereAmI();
+whereAmI();
+whereAmI();
+
 console.log('FIRST');
