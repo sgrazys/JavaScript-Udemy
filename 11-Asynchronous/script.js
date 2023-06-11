@@ -411,6 +411,42 @@ const getPosition = function () {
 // 	alert(err.message);
 // }
 
+// const whereAmI = async function () {
+// 	try {
+// 		//Geolocation
+// 		const pos = await getPosition();
+// 		const { latitude: lat, longitude: lng } = pos.coords;
+
+// 		// Reversed geocoding
+// 		const resGeo = await fetch(
+// 			`http://geocode.xyz/${lat},${lng}?geoit=json`
+// 		);
+
+// 		if (!resGeo.ok) throw new Error(`Problem getting location`);
+
+// 		const dataGeo = await resGeo.json();
+
+// 		// Country Data
+// 		const resp = await fetch(
+// 			`https://restcountries.com/v2/name/${dataGeo.country}`
+// 		);
+// 		if (!resp.ok) throw new Error(`Problem getting country`);
+
+// 		const data = await resp.json();
+// 		renderCountry(data[0]);
+// 	} catch (err) {
+// 		console.error(`💥💥💥💥${err}`);
+// 		renderErr(`💥 ${err.message}`);
+// 	}
+// };
+
+// whereAmI();
+
+// console.log('FIRST');
+
+///////////////////////////
+// RETURNING VALUES FROM ASYNC FUNCTIONS
+
 const whereAmI = async function () {
 	try {
 		//Geolocation
@@ -423,7 +459,6 @@ const whereAmI = async function () {
 		);
 
 		if (!resGeo.ok) throw new Error(`Problem getting location`);
-
 		const dataGeo = await resGeo.json();
 
 		// Country Data
@@ -434,14 +469,31 @@ const whereAmI = async function () {
 
 		const data = await resp.json();
 		renderCountry(data[0]);
+
+		return `You are in ${dataGeo.city}, ${dataGeo.country}`;
 	} catch (err) {
 		console.error(`💥💥💥💥${err}`);
 		renderErr(`💥 ${err.message}`);
+
+		// Reject promise returned from async functions
+		throw err;
 	}
 };
 
-whereAmI();
-whereAmI();
-whereAmI();
+console.log('1: Will get location');
+// const city = whereAmI();
+// console.log(city);
+// whereAmI()
+// 	.then((location) => console.log(`2: ${location} 🌆`))
+// 	.catch((err) => console.log(`2: ${err.message}💥 `))
+// 	.finally(() => console.log('3: Finished getting location'));
 
-console.log('FIRST');
+(async function () {
+	try {
+		const resp = await whereAmI();
+		console.log(`2: ${resp}`);
+	} catch (err) {
+		console.log(`2: ${err.message}💥 `);
+	}
+	console.log('3: Finished getting location');
+})();
