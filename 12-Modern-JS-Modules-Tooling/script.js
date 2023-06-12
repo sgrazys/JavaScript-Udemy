@@ -14,13 +14,12 @@
 // import add, { addToCart, totalPrice as price, tq } from './shoppingCart.js';
 // console.log(price);
 
-// import add, { cart } from './shoppingCart.js';
-// add('pizza', 5, 2);
-// add('bread', 15, 20);
-// add('watermelon', 12, 4);
-// add('bannana', 122, 14);
+import add, { cart } from './shoppingCart.js';
+add('pizza', 5, 2);
+add('bread', 15, 20);
+add('apples', 5, 3);
 
-// console.log(cart);
+console.log(cart);
 
 ////////////////////
 // TOP LEVEL-AWAIT
@@ -95,7 +94,8 @@
 // // Import
 // const { addTocart } = require('./shoppingCart.js');
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
 
 const state = {
 	cart: [
@@ -112,4 +112,25 @@ console.log(stateClone);
 console.log((state.cart[1].quantity = 15));
 console.log(stateDeepClone);
 
-console.log(stateClone);
+if (module.hot) {
+	module.hot.accept();
+}
+
+class Person {
+	greeting = 'Hey';
+	constructor(name) {
+		this.name = name;
+		console.log(`${this.greeting}, ${this.name}`);
+	}
+}
+
+const saulius = new Person('Saulius');
+
+console.log('Saulius' ?? null);
+console.log(cart.find((el) => el.quantity >= 2));
+Promise.resolve('TEST').then((x) => console.log(x));
+
+import 'core-js/stable';
+
+// Poliffilling async functions
+import 'regenerator-runtime/runtime';
