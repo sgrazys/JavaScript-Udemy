@@ -31,7 +31,7 @@ export default function (product, quantity, price) {
 		totalPrice: quantity * price,
 	});
 	console.log(
-		`${quantity} ${product} was added to cart. Total of ${product} price: ${
+		`${quantity} ${product} was added to cart. Total price of ${product}:  ${
 			price * quantity
 		}`
 	);
